@@ -10,7 +10,6 @@ namespace TodoListApp1.Page
 		{
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            
         }
         private async void GoToSignUp(object sender, EventArgs e)
         {

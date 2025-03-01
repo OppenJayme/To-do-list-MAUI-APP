@@ -7,7 +7,7 @@ namespace TodoListApp1.Page
         public SignUpPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+
         }
     }
 }
