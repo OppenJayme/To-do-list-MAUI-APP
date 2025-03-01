@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TodoListApp1.Page.Page1">
-    <StackLayout>
-        <Label Text="Test"></Label>
-        <Button Text="Sign Up" Clicked="GoToSignUp"></Button>
-    </StackLayout>
+             x:Class="TodoListApp1.Page.Page1"
+             Title=""
+             Title.isVisible="False">
+    <AbsoluteLayout>
+        <VerticalStackLayout Spacing="0" VerticalOptions="Fill" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Image Source="todologo.png" WidthRequest="200" HeightRequest="200" Margin="0,0,0,-10"></Image>
+            <Label Text="Sign In"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               FontSize="30"
+               Padding="0,-5,0,30"
+               FontAttributes="Bold">
+            </Label>
+            <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" 
+                WidthRequest="345" HeightRequest="50">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <Entry Placeholder="Email address"
+                   WidthRequest="345"
+                   Keyboard="Email"
+                   BackgroundColor="Transparent"
+                   TextColor="Black"
+                   Margin="30,2 ,0,0"/>
+            </Border>
+            <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" 
+                WidthRequest="345" HeightRequest="50">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <Entry Placeholder="Password"
+                   WidthRequest="345"
+                   IsPassword="True"
+                   Keyboard="Default"
+                   BackgroundColor="Transparent"
+                   TextColor="Black"
+                   Margin="30,2 ,0,0"/>
+            </Border>
+            <Button Text="Sign In (Not working yet)" 
+                WidthRequest="345"
+                BackgroundColor="#50C2C9"
+                FontAttributes="Bold"
+                Margin="0,0,0,15"
+                CornerRadius="7"></Button>
+            <Grid WidthRequest="345">
+                <Button Text="Sign Up (goes to page 2)"
+                    Clicked="GoToSignUp"
+                    BackgroundColor="#A3DBDE"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill"/>
+            </Grid>
+        </VerticalStackLayout>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="125" HeightRequest="125" 
+             AbsoluteLayout.LayoutBounds="1,1.06,10,200" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="125" HeightRequest="125" 
+             AbsoluteLayout.LayoutBounds="0.83,1.19,10,200" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="125" HeightRequest="125" 
+            AbsoluteLayout.LayoutBounds="0.1,-0.2,10,200" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+    </AbsoluteLayout>
 </ContentPage>

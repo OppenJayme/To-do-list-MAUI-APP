@@ -371,9 +371,6 @@ D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win1
 D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.WindowsAppRuntime.Bootstrap.dll
 D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.Windows.SDK.NET.dll
 D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\WinRT.Runtime.dll
-D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.Maui.Controls.HotReload.Forms.dll
-D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
-D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.VisualStudio.DesignTools.TapContract.dll
 D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.Web.WebView2.Core.Projection.dll
 D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.UI.pri
 D:\Visual Studio\Projects\TodoListApp1\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.UI.Xaml.Controls.pri
@@ -482,3 +479,4 @@ D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-windows10.0.19041.0\win1
 D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt
 D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
+D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\TodoListApp1.sourcelink.json

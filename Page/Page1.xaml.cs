@@ -9,11 +9,14 @@ namespace TodoListApp1.Page
 		public Page1()
 		{
             InitializeComponent();
-		}
+            NavigationPage.SetHasNavigationBar(this, false);
+            
+        }
         private async void GoToSignUp(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SignUpPage());
         }
+
     }
 
 }

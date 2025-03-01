@@ -1353,3 +1353,4 @@ D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-android\stamp\_ConvertRe
 D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-android\stamp\_GenerateJavaStubs.stamp
 D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-android\stamp\_GeneratePackageManagerJava.stamp
 D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-android\stamp\_ResolveLibraryProjectImports.stamp
+D:\Visual Studio\Projects\TodoListApp1\obj\Debug\net9.0-android\TodoListApp1.sourcelink.json
