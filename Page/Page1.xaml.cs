@@ -11,7 +11,12 @@ namespace TodoListApp1.Page
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
-        private async void GoToSignUp(object sender, EventArgs e)
+        //private async void GoToSignUp(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushAsync(new SignUpPage());
+        //}
+
+        private async void OnTapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SignUpPage());
         }

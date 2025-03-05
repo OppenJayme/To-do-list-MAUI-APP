@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.Page1"
-             Title="">
-    <AbsoluteLayout>
+             Title=""
+             BackgroundColor="Transparent">
+    <AbsoluteLayout BackgroundColor="White">
         <VerticalStackLayout Spacing="0" VerticalOptions="Fill" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-            <Image Source="todologo.png" WidthRequest="200" HeightRequest="200" Margin="0,0,0,-10"></Image>
+            <Image Source="todologo.png" WidthRequest="286" HeightRequest="286" Margin="0,66,0,-10"></Image>
             <Label Text="Sign In"
                VerticalOptions="Center"
                HorizontalOptions="Center"
@@ -16,7 +17,7 @@
             <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" 
                 WidthRequest="345" HeightRequest="50">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10"/>
+                    <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
                 <Entry Placeholder="Email address"
                    WidthRequest="345"
@@ -28,7 +29,7 @@
             <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" 
                 WidthRequest="345" HeightRequest="50">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10"/>
+                    <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
                 <Entry Placeholder="Password"
                    WidthRequest="345"
@@ -38,27 +39,34 @@
                    TextColor="Black"
                    Margin="30,2 ,0,0"/>
             </Border>
-            <Button Text="Sign In (Not working yet)" 
+            <Button Text="Log In" 
                 WidthRequest="345"
                 BackgroundColor="#50C2C9"
                 FontAttributes="Bold"
                 Margin="0,0,0,15"
                 CornerRadius="7"></Button>
-            <Grid WidthRequest="345">
-                <Button Text="Sign Up (goes to page 2)"
-                    Clicked="GoToSignUp"
-                    BackgroundColor="#A3DBDE"
-                    TextColor="Black"
-                    FontAttributes="Bold"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Fill"/>
-            </Grid>
+            
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Don't have an account?"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontSize="15"/>
+                        <Label Text=" Sign up."
+                   FontSize="15"
+                   TextColor="Blue">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>    
+            </HorizontalStackLayout>
         </VerticalStackLayout>
-        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="125" HeightRequest="125" 
-             AbsoluteLayout.LayoutBounds="1,1.06,10,200" AbsoluteLayout.LayoutFlags="PositionProportional"/>
-        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="125" HeightRequest="125" 
-             AbsoluteLayout.LayoutBounds="0.83,1.19,10,200" AbsoluteLayout.LayoutFlags="PositionProportional"/>
-        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="125" HeightRequest="125" 
-            AbsoluteLayout.LayoutBounds="0.1,-0.2,10,200" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+             AbsoluteLayout.LayoutBounds="1,1.06,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+             AbsoluteLayout.LayoutBounds="0.80,1.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+            AbsoluteLayout.LayoutBounds="0.010,-0.05,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+            AbsoluteLayout.LayoutBounds="0.2,-0.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
     </AbsoluteLayout>
 </ContentPage>
