@@ -2,11 +2,70 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.SignUpPage"
-             Title="SignUpPage">
-    <VerticalStackLayout>
-        <Label
-            Text="Welcome to SignUp PAge!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title=""
+             NavigationPage.HasBackButton="False">
+    <AbsoluteLayout>
+        <VerticalStackLayout Spacing="0" VerticalOptions="Fill" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Image Source="signupgraphic.png" WidthRequest="200" HeightRequest="200" Margin="0,80,0,-10"/>
+            <Label Text="Let's help to meet up your tasks."
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontSize="15"
+                   Padding="0,-5,0,30"/>
+            <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" WidthRequest="345" HeightRequest="50">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30"/>
+                </Border.StrokeShape>
+                <Entry Placeholder="Full Name" WidthRequest="345" BackgroundColor="Transparent" TextColor="Black" Margin="30,2,0,0"/>
+            </Border>
+            <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" WidthRequest="345" HeightRequest="50">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30"/>
+                </Border.StrokeShape>
+                <Entry Placeholder="Email Address" WidthRequest="345" Keyboard="Email" BackgroundColor="Transparent" TextColor="Black" Margin="30,2,0,0"/>
+            </Border>
+            <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" WidthRequest="345" HeightRequest="50">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30"/>
+                </Border.StrokeShape>
+                <Entry Placeholder="Password" WidthRequest="345" IsPassword="True" BackgroundColor="Transparent" TextColor="Black" Margin="30,2,0,0"/>
+            </Border>
+            <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" WidthRequest="345" HeightRequest="50">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30"/>
+                </Border.StrokeShape>
+                <Entry Placeholder="Confirm Password" WidthRequest="345" IsPassword="True" BackgroundColor="Transparent" TextColor="Black" Margin="30,2,0,0"/>
+            </Border>
+            <Button Text="Sign Up"
+                    Clicked="GoToSignIn"
+                    WidthRequest="345"
+                    BackgroundColor="#50C2C9"
+                    FontAttributes="Bold"
+                    Margin="0,0,0,15"
+                    CornerRadius="7"/>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                
+                <Label Text="Already have an account?"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontSize="15"/>
+                <Label Text=" Log in."
+                   FontSize="15"
+                   TextColor="Blue">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLabelTapped" />
+                     </Label.GestureRecognizers>
+                </Label>
+
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+     AbsoluteLayout.LayoutBounds="1,1.06,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+     AbsoluteLayout.LayoutBounds="0.80,1.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+    AbsoluteLayout.LayoutBounds="0.010,-0.05,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+    AbsoluteLayout.LayoutBounds="0.2,-0.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+    </AbsoluteLayout>
 </ContentPage>
