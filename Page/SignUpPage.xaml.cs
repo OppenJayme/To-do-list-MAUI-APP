@@ -1,20 +1,22 @@
-using Microsoft.Maui.Controls;
-
 namespace TodoListApp1.Page
 {
-    public partial class SignUpPage : ContentPage
+    public partial class SignUpPage
     {
         public SignUpPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
-        private async void GoToSignIn(object sender, EventArgs e)
+        private void GoToSignIn(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Page1());
+            //await Navigation.PushAsync(new Page1());
+            Navigation.PopAsync();
         }
 
-         
 
+        private void OnLabelTapped(object? sender, TappedEventArgs e)
+        {
+            Navigation.PopAsync();
+        }
     }
 }
