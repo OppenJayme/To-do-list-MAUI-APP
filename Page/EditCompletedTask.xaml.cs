@@ -1,13 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TodoListApp1.Models;
 
 namespace TodoListApp1.Page;
 
-public partial class EditTaskPage : ContentPage
+public partial class EditCompletedTask : ContentPage
 {
     
     public ToDoItem Task { get; set; }
 
-    public EditTaskPage(ToDoItem task)
+    public EditCompletedTask(ToDoItem task)
     {
         InitializeComponent();
         Task = task; // Store the task object for later use
@@ -19,7 +24,7 @@ public partial class EditTaskPage : ContentPage
         Navigation.PopAsync();
     }
 
-    private void OnMarkFinishedClicked(object? sender, EventArgs e)
+    private void OnMarkUnfinishedClicked(object? sender, EventArgs e)
     {
         Navigation.PopAsync();
     }
@@ -34,3 +39,4 @@ public partial class EditTaskPage : ContentPage
         Navigation.PopAsync();
     }
 }
+

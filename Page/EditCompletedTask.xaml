@@ -1,9 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TodoListApp1.Page.EditTaskPage"
-             BackgroundColor="White"
+             x:Class="TodoListApp1.Page.EditCompletedTask"
              Shell.NavBarIsVisible="True">
-    <ContentPage.Content>
+        <ContentPage.Content>
         <Grid RowDefinitions="Auto,*,Auto,Auto,Auto"
               Padding="20"
               RowSpacing="20">
@@ -38,10 +39,10 @@
         
             <!-- Mark Unfinished Button -->
             <Button Grid.Row="3"
-                    Text="Mark Finished"
+                    Text="Mark Unfinished"
                     BackgroundColor="#E0E0E0"
                     TextColor="Black"
-                    Clicked="OnMarkFinishedClicked"
+                    Clicked="OnMarkUnfinishedClicked"
                     HorizontalOptions="Fill" />
         
             <!-- Delete Button -->
@@ -52,5 +53,5 @@
                     Clicked="OnDeleteClicked"
                     HorizontalOptions="Fill" />
         </Grid>
-    </ContentPage.Content> 
+    </ContentPage.Content>  
 </ContentPage>

@@ -28,4 +28,16 @@ public partial class CompletedTaskPage : ContentPage
             CompletedItems.Remove(item);
     }
 
+    private async void CompletedTaskTapped(object sender, TappedEventArgs e)
+    {
+        // Get the task object from the sender's BindingContext
+        var label = sender as Label;
+        var task = label?.BindingContext as ToDoItem;  // Cast to ToDoItem
+
+        if (task != null)
+        {
+            // Navigate to the EditCompletedTask page, passing the ToDoItem object
+            await Application.Current.MainPage.Navigation.PushAsync(new EditCompletedTask(task));
+        }
+    }
 }

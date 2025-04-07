@@ -44,18 +44,16 @@ public partial class TaskPage : ContentPage
         // Navigate to the CompletedTaskPage and pass the item
         Shell.Current.GoToAsync("CompletedTaskPage");
     }
-    private async void OnTaskTapped(object sender, SelectionChangedEventArgs e)
+    private async void OnTaskTapped(object? sender, TappedEventArgs tappedEventArgs)
     {
-        // Check if an item is selected
-        if (e.CurrentSelection.Count > 0)
+        // Get the task object from the sender's BindingContext
+        var label = sender as Label;
+
+        if (label?.BindingContext is ToDoItem task)
         {
-            var selectedTask = e.CurrentSelection[0] as ToDoItem;
-
-            // Make sure to pass the selected task to the EditTaskPage
-            //await Navigation.PushAsync(new EditTaskPage(selectedTask));
-
-            // Optionally, clear the selection
-            ToDoList.SelectedItem = null;
+            // Navigate to the EditCompletedTask page, passing the ToDoItem object
+            await Application.Current.MainPage.Navigation.PushAsync(new EditCompletedTask(task));
         }
     }
+
 }
