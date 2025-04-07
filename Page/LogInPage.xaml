@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TodoListApp1.Page.Page1"
+             x:Class="TodoListApp1.Page.LogInPage"
              Title=""
              BackgroundColor="Transparent">
     <AbsoluteLayout BackgroundColor="White">
@@ -44,7 +44,8 @@
                 BackgroundColor="#50C2C9"
                 FontAttributes="Bold"
                 Margin="0,0,0,15"
-                CornerRadius="7"></Button>
+                CornerRadius="7"
+                Clicked="OnLogInClicked"></Button>
             
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Label Text="Don't have an account?"
@@ -55,7 +56,7 @@
                    FontSize="15"
                    TextColor="Blue">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnTapped" />
+                                <TapGestureRecognizer Tapped="SignUpTapped" />
                             </Label.GestureRecognizers>
                         </Label>    
             </HorizontalStackLayout>

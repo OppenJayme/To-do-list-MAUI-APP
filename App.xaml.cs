@@ -8,7 +8,7 @@ namespace TodoListApp1
         public App()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+
 #if ANDROID 
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoUnderline", (h, v) =>
             {
@@ -17,11 +17,11 @@ namespace TodoListApp1
             });
 #endif
         }
-        
+
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new NavigationPage(new Page.Page1()));
+            // Load AppShell for Shell navigation
+            return new Window(new AppShell());
         }
-
     }
 }

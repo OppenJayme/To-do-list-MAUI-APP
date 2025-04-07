@@ -54,7 +54,28 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\check_icon.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\check_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\completed_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiImage>
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		<MauiImage Update="Resources\Images\profile_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\todosectionIcon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\todotask_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\trashIcon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiImage>
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -78,13 +99,46 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Page\page1.xaml.cs">
-	    <DependentUpon>Page1.xaml</DependentUpon>
+	  <Compile Update="Page\EditTaskPage.xaml.cs">
+	    <DependentUpon>EditTaskPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Page\EditCompletedTaskPage.xaml.cs">
+	    <DependentUpon>EditCompletedTaskPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Page\AddTaskPage.xaml.cs">
+	    <DependentUpon>AddTaskPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Page\CompletedTaskPage.xaml.cs">
+	    <DependentUpon>CompletedTaskPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Page\ProfilePage.xaml.cs">
+	    <DependentUpon>ProfilePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Page\TaskPage.xaml.cs">
+	    <DependentUpon>TaskPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Page\Page1.xaml">
+	  <MauiXaml Update="Page\EditTaskPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Page\EditCompletedTaskPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Page\AddTaskPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Page\CompletedTaskPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Page\ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Page\TaskPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Page\LogInPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Page\Page2.xaml">

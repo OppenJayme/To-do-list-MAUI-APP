@@ -4,21 +4,26 @@ using System.Threading.Tasks;
 
 namespace TodoListApp1.Page
 {
-	public partial class Page1 : ContentPage
+	public partial class LogInPage : ContentPage
 	{
-		public Page1()
+		public LogInPage()
 		{
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+            Shell.SetFlyoutBehavior(this, FlyoutBehavior.Disabled);
         }
         //private async void GoToSignUp(object sender, EventArgs e)
         //{
         //    await Navigation.PushAsync(new SignUpPage());
         //}
 
-        private async void OnTapped(object sender, EventArgs e)
+        private async void SignUpTapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SignUpPage());
+        }
+
+        private async void OnLogInClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//TaskPage");
         }
 
     }

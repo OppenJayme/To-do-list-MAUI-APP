@@ -1,22 +1,22 @@
 namespace TodoListApp1.Page
 {
-    public partial class SignUpPage
+    public partial class SignUpPage : ContentPage
     {
         public SignUpPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
-        }
-        private void GoToSignIn(object sender, EventArgs e)
-        {
-            //await Navigation.PushAsync(new Page1());
-            Navigation.PopAsync();
+            Shell.SetFlyoutBehavior(this, FlyoutBehavior.Disabled);
         }
 
-
-        private void OnLabelTapped(object? sender, TappedEventArgs e)
+        private async void GoToSignIn(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            // Go back to LoginPage
+            await Shell.Current.GoToAsync("//LogInPage");
+        }
+
+        private async void OnLabelTapped(object? sender, TappedEventArgs e)
+        {
+            await Shell.Current.GoToAsync("//LogInPage");
         }
     }
 }
