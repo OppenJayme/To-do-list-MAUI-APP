@@ -2,11 +2,66 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.ProfilePage"
-             Title="Profile">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Profile"
+             BackgroundColor="#f0f9f9">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Background Graphics in Grid -->
+        <AbsoluteLayout Grid.Row="0" Grid.RowSpan="3">
+            <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+                     AbsoluteLayout.LayoutBounds="1,1.06,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+            <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+                     AbsoluteLayout.LayoutBounds="0.80,1.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+            <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+                     AbsoluteLayout.LayoutBounds="0.010,-0.05,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+            <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+                     AbsoluteLayout.LayoutBounds="0.2,-0.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        </AbsoluteLayout>
+        <!-- Header -->
+        <Grid Grid.Row="0" BackgroundColor="#4EC5C1" HeightRequest="60">
+            <Label Text="Profile"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   TextColor="White" />
+        </Grid>
+        
+        <!-- Profile Content -->
+        <StackLayout Grid.Row="1" Padding="30"
+                     VerticalOptions="Center" 
+                     HorizontalOptions="Center"
+                     Spacing="20">
+
+            <!-- Profile Image -->
+            <StackLayout Grid.Row="1"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="20">
+
+                <!-- Circular Profile Image without Frame -->
+                <Image Source="your_profile_image.jpeg"
+                       WidthRequest="200"
+                       HeightRequest="200"
+                       Aspect="AspectFill">
+                    <Image.Clip>
+                        <EllipseGeometry Center="100,100" RadiusX="100" RadiusY="100" />
+                    </Image.Clip>
+                </Image>
+
+                <!-- Sign Out Button -->
+                <Button Text="Sign Out"
+                        BackgroundColor="#4EC5C1"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        WidthRequest="345"
+                        HeightRequest="40"
+                        Clicked="OnSignOutClicked" />
+            </StackLayout>
+
+        </StackLayout>
+
+        
+
+    </Grid>
 </ContentPage>

@@ -6,4 +6,9 @@ public partial class ProfilePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	private void OnSignOutClicked(object? sender, EventArgs e)
+	{
+		Navigation.PushAsync(new LogInPage());
+	}
 }
