@@ -12,10 +12,10 @@
     Shell.TabBarTitleColor="#32BAAA">
 
     <!-- LogInPage as a FlyoutItem -->
-    <FlyoutItem Title="LogIn" Route="LogInPage">
+    <!-- <FlyoutItem Title="LogIn" Route="LogInPage">
         <ShellContent
             ContentTemplate="{DataTemplate local:LogInPage}" />
-    </FlyoutItem>
+    </FlyoutItem> -->
 
     <TabBar>
 

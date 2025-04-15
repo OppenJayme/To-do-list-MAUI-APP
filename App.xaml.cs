@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls.PlatformConfiguration;
 using Microsoft.Maui.Platform;
+using TodoListApp1.Page; 
 
 namespace TodoListApp1
 {
@@ -21,7 +22,7 @@ namespace TodoListApp1
         protected override Window CreateWindow(IActivationState? activationState)
         {
             // Load AppShell for Shell navigation
-            return new Window(new AppShell());
+            return new Window(new NavigationPage(new LogInPage()));
         }
     }
 }

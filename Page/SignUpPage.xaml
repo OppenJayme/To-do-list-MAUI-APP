@@ -16,28 +16,62 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Full Name" WidthRequest="345" BackgroundColor="Transparent" TextColor="Black" Margin="30,2,0,0"/>
+                <Entry Placeholder="First Name" 
+                    Text="{Binding FirstName}" 
+                    WidthRequest="345" 
+                    BackgroundColor="Transparent" 
+                    TextColor="Black" 
+                    Margin="30,2,0,0"/>
             </Border>
             <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" WidthRequest="345" HeightRequest="50">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Email Address" WidthRequest="345" Keyboard="Email" BackgroundColor="Transparent" TextColor="Black" Margin="30,2,0,0"/>
+                <Entry Placeholder="Last Name" 
+                    Text="{Binding LastName}" 
+                    WidthRequest="345" 
+                    BackgroundColor="Transparent" 
+                    TextColor="Black" 
+                    Margin="30,2,0,0"/>
             </Border>
             <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" WidthRequest="345" HeightRequest="50">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Password" WidthRequest="345" IsPassword="True" BackgroundColor="Transparent" TextColor="Black" Margin="30,2,0,0"/>
+               <Entry Placeholder="Email Address" 
+                    Text="{Binding Email}" 
+                    WidthRequest="345" 
+                    Keyboard="Email" 
+                    BackgroundColor="Transparent" 
+                    TextColor="Black" 
+                    Margin="30,2,0,0"/>
             </Border>
             <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" WidthRequest="345" HeightRequest="50">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Confirm Password" WidthRequest="345" IsPassword="True" BackgroundColor="Transparent" TextColor="Black" Margin="30,2,0,0"/>
+                <Entry Placeholder="Password" 
+                    Text="{Binding Password}" 
+                    WidthRequest="345" 
+                    IsPassword="True" 
+                    BackgroundColor="Transparent" 
+                    TextColor="Black" 
+                    Margin="30,2,0,0"/>
+            </Border>
+            <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" WidthRequest="345" HeightRequest="50">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30"/>
+                </Border.StrokeShape>
+                <Entry Placeholder="Confirm Password" 
+                    Text="{Binding ConfirmPassword}" 
+                    WidthRequest="345" 
+                    IsPassword="True" 
+                    BackgroundColor="Transparent" 
+                    TextColor="Black" 
+                    Margin="30,2,0,0"/>
             </Border>
             <Button Text="Sign Up"
-                    Clicked="GoToSignIn"
+                    Clicked="OnSignUpClicked"
                     WidthRequest="345"
                     BackgroundColor="#50C2C9"
                     FontAttributes="Bold"
