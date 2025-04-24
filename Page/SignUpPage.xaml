@@ -87,7 +87,7 @@
                    FontSize="15"
                    TextColor="Blue">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        <TapGestureRecognizer Tapped="OnLabelLogInTapped" />
                      </Label.GestureRecognizers>
                 </Label>
 
