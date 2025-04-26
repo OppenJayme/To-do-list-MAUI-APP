@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.ComponentModel;
+using TodoListApp1.Models;
 
 namespace TodoListApp1.Page
 {
@@ -81,10 +82,5 @@ namespace TodoListApp1.Page
             await Navigation.PushAsync(new LogInPage());
         }
     }
-
-    public class ApiResponse
-    {
-        public int Status { get; set; }
-        public string Message { get; set; }
-    }
+    
 }

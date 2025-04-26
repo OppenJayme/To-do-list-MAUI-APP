@@ -12,10 +12,10 @@ public partial class CompletedTaskPage : ContentPage
     public CompletedTaskPage()
     {
         InitializeComponent();
-        CompletedItems = new ObservableCollection<ToDoItem>
-        {
-            new ToDoItem { Title = "Completed task 1", IsCompleted = true }
-        };
+        //CompletedItems = new ObservableCollection<ToDoItem>
+       // {
+        //    new ToDoItem { Title = "Completed task 1", IsCompleted = true }
+       // };
 
         DeleteCompletedCommand = new Command<ToDoItem>(DeleteCompletedItem);
 

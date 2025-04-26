@@ -1,6 +1,7 @@
 using Microsoft.Maui.Controls;
 using System.Net.Http;
 using System.Text.Json;
+using TodoListApp1.Models;
 
 namespace TodoListApp1.Page
 {
@@ -43,6 +44,7 @@ namespace TodoListApp1.Page
 
                     if (result != null && result.Status == 200)
                     {
+                        Preferences.Set("user_id", result.Data.Id);
                         await DisplayAlert("Success", result.Message ?? "Logged in successfully.", "OK");
 
                         // Navigate to TaskPage after successful login
@@ -71,24 +73,9 @@ namespace TodoListApp1.Page
             await Navigation.PushAsync(new SignUpPage());
         }
     }
-
-    // Define the SignInResponse class to match the API response structure
-    public class SignInResponse
-    {
-        public int Status { get; set; }
-        public SignInData Data { get; set; }
-        public string Message { get; set; }
-    }
-
+    
     // Define the SignInData class for the "data" field in the API response
-    public class SignInData
-    {
-        public int Id { get; set; }
-        public string Fname { get; set; }
-        public string Lname { get; set; }
-        public string Email { get; set; }
-        public string Timemodified { get; set; }
-    }
+
 
     // Define the ApiResponse class for error responses
  //   public class ApiResponse
