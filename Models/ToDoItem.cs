@@ -11,7 +11,6 @@
 
         // Convenience property to display in the UI
         public string Title => Item_Name;
-        public string Content => Item_Description;
 
         // Optional property for UI use only
         public bool IsCompleted => Status == "inactive";

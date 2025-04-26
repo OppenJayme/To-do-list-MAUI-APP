@@ -74,12 +74,38 @@ public partial class TaskPage : ContentPage
         }
     }
 
-    private void CompleteItem(ToDoItem item)
+    private async void CompleteItem(ToDoItem item)
     {
-        item.Status = "inactive"; // Local UI update; not persisted unless you implement it
-        // Navigate or move item elsewhere if needed
-    }
+        try
+        {
+            using var client = new HttpClient();
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("task_id", item.ItemId.ToString()),
+                new KeyValuePair<string, string>("status", "inactive")
+            });
 
+            var response = await client.PostAsync("https://todo-list.dcism.org/statusItem_action.php", content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            System.Diagnostics.Debug.WriteLine($"[CompleteItem] Server Response: {responseString}");
+
+            if (response.IsSuccessStatusCode && responseString.Contains("200"))
+            {
+                Items.Remove(item); // remove locally
+                await DisplayAlert("Success", "Task marked as complete!", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Error", $"Failed to mark task as complete.\nResponse: {responseString}", "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Exception", ex.Message, "OK");
+        }
+    }
+    
     private async void OnTaskTapped(object? sender, TappedEventArgs e)
     {
         if ((sender as Label)?.BindingContext is ToDoItem task)
