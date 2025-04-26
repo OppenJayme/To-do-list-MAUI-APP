@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.ComponentModel;
+using TodoListApp1.Models;
 
 namespace TodoListApp1.Page
 {
@@ -63,7 +64,7 @@ namespace TodoListApp1.Page
                 {
                     var result = JsonSerializer.Deserialize<ApiResponse>(responseString);
                     await DisplayAlert("Success", result?.Message ?? "Account created successfully.", "OK");
-                    await Shell.Current.GoToAsync("//LogInPage");
+                    Application.Current.MainPage = new NavigationPage(new LogInPage());
                 }
                 else
                 {
@@ -76,15 +77,10 @@ namespace TodoListApp1.Page
                 await DisplayAlert("Error", ex.Message, "OK");
             }
         }
-        private async void OnLabelTapped(object sender, EventArgs e)
+        private async void OnLabelLogInTapped(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LogInPage");
+            await Navigation.PushAsync(new LogInPage());
         }
     }
-
-    public class ApiResponse
-    {
-        public int Status { get; set; }
-        public string Message { get; set; }
-    }
+    
 }

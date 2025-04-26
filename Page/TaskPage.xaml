@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.TaskPage"
              BackgroundColor="White">
+
     <AbsoluteLayout>
         <!-- Background Graphics -->
         <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
@@ -13,7 +14,7 @@
         <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
                  AbsoluteLayout.LayoutBounds="0.2,-0.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
 
-        <!-- Main Content (StackLayout and CollectionView) -->
+        <!-- Main Content -->
         <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <StackLayout Padding="20" Spacing="10">
                 <Label Text="To Do"
@@ -33,20 +34,35 @@
                                     BackgroundColor="#E6E6E6"
                                     Margin="0,5"
                                     Padding="10">
-                                <Grid ColumnDefinitions="*,Auto,Auto" VerticalOptions="Center">
+                                <Grid ColumnDefinitions="*,Auto,Auto,Auto" VerticalOptions="Center">
+                                    <!-- Task Title -->
                                     <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnTaskTapped"/>
                                         </Label.GestureRecognizers>
                                     </Label>
+
+                                    <!-- Delete Button -->
                                     <ImageButton Source="trash_icon.png"
                                                  Grid.Column="1"
                                                  BackgroundColor="Transparent"
                                                  Command="{Binding BindingContext.DeleteCommand, Source={x:Reference ToDoList}}"
                                                  CommandParameter="{Binding .}"
                                                  Scale="0.5"/>
-                                    <ImageButton Source="check_icon.png"
+
+                                    <!-- Edit Button -->
+                                    <ImageButton Source="edit_icon.png"
                                                  Grid.Column="2"
+                                                 BackgroundColor="Transparent"
+                                                 Clicked="OnEditClicked"
+                                                 BindingContext="{Binding .}"
+                                                 WidthRequest="20"
+                                                 HeightRequest="20"
+                                                 Scale="0.7"/>
+
+                                    <!-- Complete Button -->
+                                    <ImageButton Source="check_icon.png"
+                                                 Grid.Column="3"
                                                  BackgroundColor="Transparent"
                                                  Command="{Binding BindingContext.CompleteCommand, Source={x:Reference ToDoList}}"
                                                  CommandParameter="{Binding .}"
@@ -58,6 +74,7 @@
                 </CollectionView>
             </StackLayout>
 
+            <!-- Add Task Button -->
             <Button Text="+" FontSize="24"
                     CornerRadius="15"
                     WidthRequest="60"

@@ -1,43 +1,76 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Net.Http;
+using System.Text.Json;
 using TodoListApp1.Models;
+using System.Collections.ObjectModel;
 
 namespace TodoListApp1.Page;
 
 public partial class CompletedTaskPage : ContentPage
 {
-    public ObservableCollection<ToDoItem> CompletedItems { get; set; }
+    private readonly HttpClient _httpClient = new();
+    public ObservableCollection<ToDoItem> CompletedItems { get; set; } = new();
+
     public Command<ToDoItem> DeleteCompletedCommand { get; }
-    public Command<ToDoItem> MoveBackToPendingCommand { get; }
 
     public CompletedTaskPage()
     {
         InitializeComponent();
-        CompletedItems = new ObservableCollection<ToDoItem>
-        {
-            new ToDoItem { Title = "Completed task 1", IsCompleted = true }
-        };
-
-        DeleteCompletedCommand = new Command<ToDoItem>(DeleteCompletedItem);
-
         BindingContext = this;
+
+        DeleteCompletedCommand = new Command<ToDoItem>(async (item) => await DeleteCompletedItem(item));
+
+        LoadCompletedTasks(); // ⬅️ Fetch tasks when page loads
     }
 
-    private void DeleteCompletedItem(ToDoItem item)
+    private async void LoadCompletedTasks()
     {
-        if (CompletedItems.Contains(item))
+        try
+        {
+            var response = await _httpClient.GetAsync("https://todo-list.dcism.org/items.php");
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var allTasks = JsonSerializer.Deserialize<List<ToDoItem>>(json);
+
+                var completedTasks = allTasks.Where(t => t.IsCompleted);
+
+                CompletedItems.Clear();
+                foreach (var task in completedTasks)
+                {
+                    CompletedItems.Add(task);
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", "Failed to load tasks.", "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
+
+    private async Task DeleteCompletedItem(ToDoItem item)
+    {
+        var response = await _httpClient.DeleteAsync($"https://todo-list.dcism.org/deleteItem_action.php?item_id={item.ItemId}");
+        if (response.IsSuccessStatusCode)
+        {
             CompletedItems.Remove(item);
+            await DisplayAlert("Success", "Task deleted.", "OK");
+        }
+        else
+        {
+            await DisplayAlert("Error", "Failed to delete task.", "OK");
+        }
     }
 
     private async void CompletedTaskTapped(object sender, TappedEventArgs e)
     {
-        // Get the task object from the sender's BindingContext
         var label = sender as Label;
-        var task = label?.BindingContext as ToDoItem;  // Cast to ToDoItem
+        var task = label?.BindingContext as ToDoItem;
 
         if (task != null)
-        {
-            // Navigate to the EditCompletedTask page, passing the ToDoItem object
-            await Application.Current.MainPage.Navigation.PushAsync(new EditCompletedTask(task));
-        }
+            await Navigation.PushAsync(new EditTaskPage(task));
     }
 }
