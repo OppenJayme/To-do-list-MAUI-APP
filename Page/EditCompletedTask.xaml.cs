@@ -10,7 +10,7 @@ namespace TodoListApp1.Page;
 public partial class EditCompletedTask : ContentPage
 {
     
-    public ToDoItem Task { get; set; }
+    public ToDoItem Task { get; set; }  
 
     public EditCompletedTask(ToDoItem task)
     {

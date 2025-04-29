@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using Microsoft.Maui.Controls;
@@ -36,11 +33,17 @@ namespace TodoListApp1.Page
         public Command<ToDoItem> CompleteCommand { get; }
 
         // 4) HTTP client for fetching tasks
-        readonly HttpClient _httpClient = new() { BaseAddress = new Uri("https://todo-list.dcism.org") };
+        private readonly HttpClient _httpClient;
 
         public TaskPage()
         {
             InitializeComponent();
+
+            // Set up HttpClient (change BaseAddress as needed)
+            _httpClient = new HttpClient
+            {
+                BaseAddress = new Uri("https://todo-list.dcism.org")
+            };
 
             // Wire up commands
             DeleteCommand = new Command<ToDoItem>(DeleteItem);
@@ -57,42 +60,16 @@ namespace TodoListApp1.Page
 
             try
             {
-                var response = await _httpClient.GetAsync("/tasks.php");
-                var body = await response.Content.ReadAsStringAsync();
+                // TODO: replace "/tasks.php" with your real endpoint
+                var jsonString = await _httpClient.GetStringAsync("/tasks.php");
 
-                // 5a) 404 => no tasks
-                if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    Items.Clear();
-                    return;
-                }
-
-                // 5b) other non-success => show error
-                if (!response.IsSuccessStatusCode)
-                {
-                    await DisplayAlert("Error",
-                        $"Could not load tasks (status {(int)response.StatusCode}):\n{body}", "OK");
-                    return;
-                }
-
-                // 5c) success => parse JSON
-                var list = JsonSerializer.Deserialize<List<ToDoItem>>(body);
-                Items.Clear();
+                var list = JsonSerializer.Deserialize<List<ToDoItem>>(jsonString);
                 if (list != null)
-                    foreach (var item in list)
-                        Items.Add(item);
-            }
-            catch (HttpRequestException httpEx)
-            {
-                await DisplayAlert("Error", $"Network error: {httpEx.Message}", "OK");
-            }
-            catch (JsonException jsonEx)
-            {
-                await DisplayAlert("Error", $"Data error: {jsonEx.Message}", "OK");
+                    Items = new ObservableCollection<ToDoItem>(list);
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Unexpected error: {ex.Message}", "OK");
+                await DisplayAlert("Error", $"Could not load tasks: {ex.Message}", "OK");
             }
         }
 
@@ -114,22 +91,19 @@ namespace TodoListApp1.Page
         }
 
         // 8) Complete command
-        private async void CompleteItem(ToDoItem item)
+        private void CompleteItem(ToDoItem item)
         {
-            if (item == null)
-                return;
-
+            if (item == null) return;
             item.IsCompleted = true;
-            // Navigate to the completed tab (by route), if desired
-            await Shell.Current.GoToAsync("//CompletedPage");
+            // e.g. navigate or re-load a "completed" page
+            Shell.Current.GoToAsync("CompletedTaskPage");
         }
 
-        // 9) Tap-on-task handler
+        // 9) Tap-on-task handler (if you have a Label with a TapGestureRecognizer)
         private async void OnTaskTapped(object sender, TappedEventArgs e)
         {
             if (sender is Label lbl && lbl.BindingContext is ToDoItem task)
             {
-                // Navigate to an edit page, passing the task
                 await Navigation.PushAsync(new EditCompletedTask(task));
             }
         }

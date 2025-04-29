@@ -20,7 +20,7 @@
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
                 <Entry Placeholder="Email Address"
-                   Text="{Binding Email}"
+                   Text="{Binding Email, Mode=TwoWay}"
                    WidthRequest="345"
                    Keyboard="Email"
                    BackgroundColor="Transparent"
@@ -33,7 +33,7 @@
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
                 <Entry Placeholder="Password"
-                   Text="{Binding Password}"
+                   Text="{Binding Password, Mode=TwoWay}"
                    WidthRequest="345"
                    IsPassword="True"
                    Keyboard="Default"

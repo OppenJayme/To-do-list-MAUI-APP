@@ -87,6 +87,7 @@
 	<ItemGroup>
 	  <Compile Remove="Page\NewPage1.cs" />
 	  <Compile Remove="Page\SignUp.cs" />
+	  <Compile Remove="Platforms\TaskPage.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -115,7 +116,7 @@
 	    <DependentUpon>ProfilePage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Page\TaskPage.xaml.cs">
-	    <DependentUpon>TaskPage.xaml</DependentUpon>
+	    <ExcludeFromCurrentConfiguration>true</ExcludeFromCurrentConfiguration>
 	  </Compile>
 	</ItemGroup>
 
