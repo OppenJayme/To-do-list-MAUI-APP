@@ -1,12 +1,41 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.AddTaskPage"
-             Title="AddTask">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Add Task"
+             Shell.NavBarIsVisible="True">
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*,Auto"
+              Padding="20">
+
+            <!-- Title Input Field -->
+            <Entry x:Name="TitleEntry"
+                   Grid.Row="0"
+                   Placeholder="Task Title"
+                   Margin="0,0,0,10" />
+            <!-- Adjusted margin -->
+
+            <!-- Description Input Field -->
+            <Editor x:Name="DescriptionEditor"
+                    Grid.Row="1"
+                    Placeholder="Task description"
+                    AutoSize="TextChanges"
+                    HeightRequest="100"
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="Transparent"
+                    TextColor="Black"
+                    Margin="0,0,0,10" />
+            <!-- Adjusted margin -->
+
+            <!-- Add Button -->
+            <Button Grid.Row="2"
+                    Text="Add Task"
+                    BackgroundColor="#4ECDC4"
+                    TextColor="White"
+                    Clicked="OnAddTaskClicked"
+                    HorizontalOptions="Fill" />
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

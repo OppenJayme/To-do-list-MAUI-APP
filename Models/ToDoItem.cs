@@ -10,7 +10,7 @@ namespace TodoListApp1.Models
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
-
+    
         [JsonPropertyName("title")]
         public string Title { get; set; }
 

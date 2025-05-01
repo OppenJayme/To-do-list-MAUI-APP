@@ -38,7 +38,7 @@ namespace TodoListApp1.Page
         // 4) HTTP client for fetching tasks
         readonly HttpClient _httpClient = new() { BaseAddress = new Uri("https://todo-list.dcism.org") };
 
-        public TaskPage()
+        public TaskPage() : ContentPage
         {
             InitializeComponent();
 
@@ -97,15 +97,11 @@ namespace TodoListApp1.Page
         }
 
         // 6) Add button handler
-        private void OnAddClicked(object sender, EventArgs e)
+        private async void OnAddClicked(object sender, EventArgs e)
         {
-            Items.Add(new ToDoItem
-            {
-                Title = $"title {Items.Count + 1}",
-                IsCompleted = false
-            });
+            // pushes your AddTaskPage modally on top of the tabs
+            await Navigation.PushAsync(new AddTaskPage(Items));
         }
-
         // 7) Delete command
         private void DeleteItem(ToDoItem item)
         {
