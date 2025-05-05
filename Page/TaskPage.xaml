@@ -3,6 +3,7 @@
              x:Class="TodoListApp1.Page.TaskPage"
              xmlns:pages="clr-namespace:TodoListApp1.Page"
              BackgroundColor="White">
+
     <AbsoluteLayout>
         <!-- Background Graphics -->
         <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
@@ -24,7 +25,6 @@
                        FontAttributes="Bold"
                        TextColor="Gray"/>
                 <BoxView HeightRequest="2" Color="LightGray" Margin="20,0"/>
-
                 <CollectionView x:Name="ToDoList" ItemsSource="{Binding Items}" SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -35,30 +35,34 @@
                                     Margin="0,5"
                                     Padding="10">
                                 <Grid ColumnDefinitions="*,Auto,Auto" VerticalOptions="Center">
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center">
+                                    <!-- Task Title -->
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" TextColor="Black">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnTaskTapped"/>
+                                             <TapGestureRecognizer/>
                                         </Label.GestureRecognizers>
                                     </Label>
+                                    <!-- Delete Button -->
                                     <ImageButton Source="trash_icon.png"
                                                  Grid.Column="1"
                                                  BackgroundColor="Transparent"
-                                                 Command="{Binding BindingContext.DeleteCommand, Source={x:Reference ToDoList}}"
-                                                 CommandParameter="{Binding .}"
                                                  Scale="0.5"/>
-                                    <ImageButton Source="check_icon.png"
-                                                 Grid.Column="2"
-                                                 BackgroundColor="Transparent"
-                                                 Command="{Binding BindingContext.CompleteCommand, Source={x:Reference ToDoList}}"
-                                                 CommandParameter="{Binding .}"
-                                                 Scale="0.5"/>
+                                    <!-- Mark As Complete -->
+                                    <Label Text="✔"
+                                           TextColor="Green"
+                                           HorizontalOptions="EndAndExpand"
+                                           VerticalOptions="Center"
+                                           FontSize="18">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnCheckTapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                 </Grid>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
-
+            <!-- Add Task Button -->
             <Button Text="+" FontSize="24"
                     CornerRadius="15"
                     WidthRequest="60"

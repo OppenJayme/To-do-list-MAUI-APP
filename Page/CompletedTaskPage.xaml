@@ -1,7 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.CompletedTaskPage"
-             BackgroundColor="White">
+             BackgroundColor="White"
+             Title="Completed Tasks">
+
     <AbsoluteLayout>
         <!-- Background Graphics -->
         <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
@@ -16,6 +19,7 @@
         <!-- Main Content (StackLayout and CollectionView) -->
         <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <StackLayout Padding="20" Spacing="10">
+                <!-- Page Header -->
                 <Label Text="Completed Tasks"
                        FontSize="32"
                        FontFamily="PoppinsExtraBold"
@@ -24,30 +28,16 @@
                        TextColor="Gray"/>
                 <BoxView HeightRequest="2" Color="LightGray" Margin="20,0"/>
 
+                <!-- Collection View for Displaying Completed Tasks -->
                 <CollectionView x:Name="CompletedList" ItemsSource="{Binding CompletedItems}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border Stroke="#DDD"
-                                    StrokeThickness="1"
-                                    StrokeShape="RoundRectangle 10"
-                                    BackgroundColor="#E6E6E6"
-                                    Margin="0,5"
-                                    Padding="10">
-                                <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="CompletedTaskTapped"/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                    
-                                    <ImageButton Source="trash_icon.png"
-                                                 Grid.Column="1"
-                                                 BackgroundColor="Transparent"
-                                                 Command="{Binding BindingContext.DeleteCompletedCommand, Source={x:Reference CompletedList}}"
-                                                 CommandParameter="{Binding .}"
-                                                 Scale="0.5"/>
-                                </Grid>
-                            </Border>
+                            <Frame BorderColor="Gray" Padding="10" Margin="0,5">
+                                <StackLayout>
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" />
+                                    <!-- Optionally, add more details here like task description -->
+                                </StackLayout>
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

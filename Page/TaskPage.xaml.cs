@@ -1,133 +1,126 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.ObjectModel;
 using System.Text.Json;
-using Microsoft.Maui.Controls;
 using TodoListApp1.Models;
+using System.Text;
 
-namespace TodoListApp1.Page
+namespace TodoListApp1.Page;
+
+public partial class TaskPage : ContentPage
 {
-    public partial class TaskPage : ContentPage, INotifyPropertyChanged
+    public ObservableCollection<ToDoItem> Items { get; set; }
+    
+    public TaskPage()
     {
-        // 1) INotifyPropertyChanged implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged(string name) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        // 2) Backing field + property for your ObservableCollection
-        private ObservableCollection<ToDoItem> _items = new();
-        public ObservableCollection<ToDoItem> Items
+        InitializeComponent();
+        Items = new ObservableCollection<ToDoItem>();
+        BindingContext = this;
+    }
+    
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        int userId = Preferences.Get("user_id", 0);
+        Console.WriteLine($"Current User ID: {userId}");
+        System.Diagnostics.Debug.WriteLine($"[TaskPage] Current user ID: {userId}"); // Logs to output
+        await LoadTasksAsync("active", userId);
+    }
+    
+    private async Task LoadTasksAsync(string status, int userId)
+    {
+        try
         {
-            get => _items;
-            set
+            using var client = new HttpClient();
+            var url = $"https://todo-list.dcism.org/getItems_action.php?status={status}&user_id={userId}";
+            var response = await client.GetStringAsync(url);
+
+            // Deserialize the response
+            var result = JsonSerializer.Deserialize<ToDoResponse>(response, new JsonSerializerOptions
             {
-                if (_items == value) return;
-                _items = value;
-                OnPropertyChanged(nameof(Items));
-            }
-        }
+                PropertyNameCaseInsensitive = true
+            });
 
-        // 3) Commands
-        public Command<ToDoItem> DeleteCommand { get; }
-        public Command<ToDoItem> CompleteCommand { get; }
-
-        // 4) HTTP client for fetching tasks
-        readonly HttpClient _httpClient = new() { BaseAddress = new Uri("https://todo-list.dcism.org") };
-
-        public TaskPage() : ContentPage
-        {
-            InitializeComponent();
-
-            // Wire up commands
-            DeleteCommand = new Command<ToDoItem>(DeleteItem);
-            CompleteCommand = new Command<ToDoItem>(CompleteItem);
-
-            // Bind to this page so XAML `{Binding Items}` works
-            BindingContext = this;
-        }
-
-        // 5) Fetch your tasks when the page appears
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-
-            try
+            // Check if the request was successful and the status is 200
+            if (result?.Status == 200)
             {
-                var response = await _httpClient.GetAsync("/tasks.php");
-                var body = await response.Content.ReadAsStringAsync();
-
-                // 5a) 404 => no tasks
-                if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    Items.Clear();
-                    return;
-                }
-
-                // 5b) other non-success => show error
-                if (!response.IsSuccessStatusCode)
-                {
-                    await DisplayAlert("Error",
-                        $"Could not load tasks (status {(int)response.StatusCode}):\n{body}", "OK");
-                    return;
-                }
-
-                // 5c) success => parse JSON
-                var list = JsonSerializer.Deserialize<List<ToDoItem>>(body);
                 Items.Clear();
-                if (list != null)
-                    foreach (var item in list)
+
+                // Loop through the tasks and add them to the ObservableCollection
+                if (result.Data != null)
+                {
+                    foreach (var item in result.Data.Values)
+                    {
+                        // Add each task (ToDoItem) to the Items collection
                         Items.Add(item);
+                    }
+                }
             }
-            catch (HttpRequestException httpEx)
+            else
             {
-                await DisplayAlert("Error", $"Network error: {httpEx.Message}", "OK");
-            }
-            catch (JsonException jsonEx)
-            {
-                await DisplayAlert("Error", $"Data error: {jsonEx.Message}", "OK");
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", $"Unexpected error: {ex.Message}", "OK");
+                await DisplayAlert("Error", "Failed to load tasks", "OK");
             }
         }
-
-        // 6) Add button handler
-        private async void OnAddClicked(object sender, EventArgs e)
+        catch (Exception ex)
         {
-            // pushes your AddTaskPage modally on top of the tabs
-            await Navigation.PushAsync(new AddTaskPage(Items));
-        }
-        // 7) Delete command
-        private void DeleteItem(ToDoItem item)
-        {
-            if (item != null && Items.Contains(item))
-                Items.Remove(item);
-        }
-
-        // 8) Complete command
-        private async void CompleteItem(ToDoItem item)
-        {
-            if (item == null)
-                return;
-
-            item.IsCompleted = true;
-            // Navigate to the completed tab (by route), if desired
-            await Shell.Current.GoToAsync("//CompletedPage");
-        }
-
-        // 9) Tap-on-task handler
-        private async void OnTaskTapped(object sender, TappedEventArgs e)
-        {
-            if (sender is Label lbl && lbl.BindingContext is ToDoItem task)
-            {
-                // Navigate to an edit page, passing the task
-                await Navigation.PushAsync(new EditCompletedTask(task));
-            }
+            await DisplayAlert("Exception", ex.Message, "OK");
         }
     }
+    
+    private async void OnAddClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddTaskPage());
+    }
+    
+    private async void OnCheckTapped(object sender, EventArgs e)
+    {
+        var label = sender as Label;
+        if (label?.BindingContext is not ToDoItem task)
+            return;
+
+        try
+        {
+            using var client = new HttpClient();
+
+            var requestBody = new
+            {
+                status = "inactive", // Or "active", depending on context
+                item_id = task.ItemId
+            };
+
+            var json = JsonSerializer.Serialize(requestBody);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("https://todo-list.dcism.org/statusItem_action.php", content);
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine("Server response: " + responseBody);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = JsonSerializer.Deserialize<GenericResponse>(responseBody);
+                if (result?.Status == 200)
+                {
+                    await DisplayAlert("Success", result.Message, "OK");
+
+                    // Optionally remove task from UI or reload
+                    var itemToRemove = Items.FirstOrDefault(x => x.ItemId == task.ItemId);
+                    if (itemToRemove != null)
+                        Items.Remove(itemToRemove);
+                }
+                else
+                {
+                    await DisplayAlert("Failed", result?.Message ?? "Unknown error", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("HTTP Error", $"Status {(int)response.StatusCode}: {responseBody}", "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Exception", ex.Message, "OK");
+        }
+    }
+
+
 }

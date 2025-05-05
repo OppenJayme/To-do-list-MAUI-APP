@@ -1,43 +1,63 @@
 ﻿using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Text.Json;
 using TodoListApp1.Models;
 
-namespace TodoListApp1.Page;
-
-public partial class CompletedTaskPage : ContentPage
+namespace TodoListApp1.Page
 {
-    public ObservableCollection<ToDoItem> CompletedItems { get; set; }
-    public Command<ToDoItem> DeleteCompletedCommand { get; }
-    public Command<ToDoItem> MoveBackToPendingCommand { get; }
-
-    public CompletedTaskPage()
+    public partial class CompletedTaskPage : ContentPage
     {
-        InitializeComponent();
-        CompletedItems = new ObservableCollection<ToDoItem>
+        public ObservableCollection<ToDoItem> CompletedItems { get; set; }
+
+        public CompletedTaskPage()
         {
-            new ToDoItem { Title = "Completed task 1", IsCompleted = true }
-        };
+            InitializeComponent();
+            CompletedItems = new ObservableCollection<ToDoItem>();
+            BindingContext = this;
+        }
 
-        DeleteCompletedCommand = new Command<ToDoItem>(DeleteCompletedItem);
-
-        BindingContext = this;
-    }
-
-    private void DeleteCompletedItem(ToDoItem item)
-    {
-        if (CompletedItems.Contains(item))
-            CompletedItems.Remove(item);
-    }
-
-    private async void CompletedTaskTapped(object sender, TappedEventArgs e)
-    {
-        // Get the task object from the sender's BindingContext
-        var label = sender as Label;
-        var task = label?.BindingContext as ToDoItem;  // Cast to ToDoItem
-
-        if (task != null)
+        protected override async void OnAppearing()
         {
-            // Navigate to the EditCompletedTask page, passing the ToDoItem object
-            await Application.Current.MainPage.Navigation.PushAsync(new EditCompletedTask(task));
+            base.OnAppearing();
+            int userId = Preferences.Get("user_id", 0);
+            Console.WriteLine($"Current User ID: {userId}");
+            await LoadCompletedTasksAsync(userId);
+        }
+
+        private async Task LoadCompletedTasksAsync(int userId)
+        {
+            try
+            {
+                using var client = new HttpClient();
+                var url = $"https://todo-list.dcism.org/getItems_action.php?status=inactive&user_id={userId}";
+                var response = await client.GetStringAsync(url);
+
+                var result = JsonSerializer.Deserialize<ToDoResponse>(response, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (result?.Status == 200)
+                {
+                    CompletedItems.Clear();
+
+                    if (result.Data != null)
+                    {
+                        foreach (var item in result.Data.Values)
+                        {
+                            CompletedItems.Add(item);
+                        }
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Failed to load completed tasks", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Exception", ex.Message, "OK");
+            }
         }
     }
 }

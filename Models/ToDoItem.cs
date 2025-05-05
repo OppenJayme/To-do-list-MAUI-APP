@@ -1,20 +1,18 @@
-﻿using System.Text.Json.Serialization;
-
-namespace TodoListApp1.Models
+﻿namespace TodoListApp1.Models
 {
-    /// <summary>
-    /// Represents a single to-do item.
-    /// Adjust JsonPropertyName to match your API’s JSON fields.
-    /// </summary>
     public class ToDoItem
     {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
-    
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public int ItemId { get; set; }
+        public string Item_Name { get; set; }
+        public string Item_Description { get; set; }
+        public string Status { get; set; }
+        public int UserId { get; set; }
+        public string TimeModified { get; set; }
 
-        [JsonPropertyName("isCompleted")]
-        public bool IsCompleted { get; set; }
+        // Convenience property to display in the UI
+        public string Title => Item_Name;
+
+        // Optional property for UI use only
+        public bool IsCompleted => Status == "inactive";
     }
 }

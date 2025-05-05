@@ -88,10 +88,21 @@
 	  <Compile Remove="Page\NewPage1.cs" />
 	  <Compile Remove="Page\SignUp.cs" />
 	  <Compile Remove="Platforms\TaskPage.xaml.cs" />
+	  <Compile Update="Page\LogInPage.cs">
+	    <DependentUpon>LogInPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Page\TaskPage.xaml.cs">
+	    <DependentUpon>TaskPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Remove="Page\SignUp.xaml" />
+	  <MauiXaml Update="Page\TaskPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -134,9 +145,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Page\ProfilePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Page\TaskPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Page\LogInPage.xaml">

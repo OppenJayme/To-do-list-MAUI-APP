@@ -2,7 +2,6 @@ using System;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using TodoListApp1.Models;
@@ -11,14 +10,11 @@ namespace TodoListApp1.Page
 {
     public partial class AddTaskPage : ContentPage
     {
-        readonly ObservableCollection<ToDoItem> _sharedItems;
         static readonly HttpClient _http = new() { BaseAddress = new Uri("https://todo-list.dcism.org") };
 
-        // <-- new ctor
-        public AddTaskPage(ObservableCollection<ToDoItem> items)
+        public AddTaskPage()
         {
             InitializeComponent();
-            _sharedItems = items;
             Shell.SetFlyoutBehavior(this, FlyoutBehavior.Disabled);
         }
 
@@ -38,8 +34,10 @@ namespace TodoListApp1.Page
             {
                 item_name = title,
                 item_description = description,
-                user_id = userId
+                user_id = userId,
+                status = "active"
             };
+
             var content = new StringContent(
                 JsonSerializer.Serialize(payload),
                 Encoding.UTF8,
@@ -50,21 +48,17 @@ namespace TodoListApp1.Page
             {
                 var response = await _http.PostAsync("/addItem_action.php", content);
                 var body = await response.Content.ReadAsStringAsync();
+
+                Console.WriteLine("Response Body: " + body);
+
                 var apiResult = JsonSerializer.Deserialize<ApiResponse>(body)
-                                     ?? throw new JsonException("Empty response");
+                                ?? throw new JsonException("Empty response");
 
                 if (response.IsSuccessStatusCode && apiResult.Status == 200)
                 {
                     await DisplayAlert("Success", apiResult.Message, "OK");
 
-                    // **add into the shared collection**
-                    _sharedItems.Add(new ToDoItem
-                    {
-                        Title = title,
-                        IsCompleted = false
-                    });
-
-                    // pop back to TaskPage (its CollectionView is bound to the same Items)
+                    // ✅ No need to add manually — TaskPage will refresh itself
                     await Navigation.PopAsync();
                 }
                 else

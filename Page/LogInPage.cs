@@ -1,9 +1,5 @@
-using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
-using Microsoft.Maui.Controls;
 using TodoListApp1.Models;
 
 namespace TodoListApp1.Page
@@ -48,22 +44,16 @@ namespace TodoListApp1.Page
 
             try
             {
-                // Build the GET URL
                 var url = $"/signin_action.php?email={Uri.EscapeDataString(Email)}&password={Uri.EscapeDataString(Password)}";
-
-                // Call the API
                 var response = await _httpClient.GetAsync(url);
                 var body = await response.Content.ReadAsStringAsync();
 
-                // If not 2xx, show raw body for debugging
                 if (!response.IsSuccessStatusCode)
                 {
-                    await DisplayAlert("Error",
-                        $"Server returned {(int)response.StatusCode}:\n{body}", "OK");
+                    await DisplayAlert("Error", $"Server returned {(int)response.StatusCode}:\n{body}", "OK");
                     return;
                 }
 
-                // Try to parse JSON
                 SignInResponse result;
                 try
                 {
@@ -72,19 +62,18 @@ namespace TodoListApp1.Page
                 }
                 catch (JsonException)
                 {
-                    await DisplayAlert("Error",
-                        $"Invalid JSON response:\n{body}", "OK");
+                    await DisplayAlert("Error", $"Invalid JSON response:\n{body}", "OK");
                     return;
                 }
 
-                // Check API status field
                 if (result.Status == 200)
                 {
                     await DisplayAlert("Success", result.Message ?? "Logged in.", "OK");
 
-                    // Swap into your Shell with tabs
-                   
-                        Application.Current.MainPage = new AppShell();
+                    // Save user ID
+                    Preferences.Set("user_id", result.Data.Id);
+
+                    Application.Current.MainPage = new AppShell("//TaskPage");
                 }
                 else
                 {
@@ -93,7 +82,7 @@ namespace TodoListApp1.Page
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");  
+                await DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
