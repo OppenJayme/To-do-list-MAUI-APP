@@ -39,7 +39,7 @@ public partial class TaskPage : ContentPage
                 PropertyNameCaseInsensitive = true
             });
 
-            // Check if the request was successful and the status is 200
+            
             if (result?.Status == 200)
             {
                 Items.Clear();
@@ -85,7 +85,7 @@ public partial class TaskPage : ContentPage
 
             var requestBody = new
             {
-                status = "inactive", // Or "active", depending on context
+                status = "inactive", 
                 item_id = task.ItemId
             };
 
@@ -95,14 +95,14 @@ public partial class TaskPage : ContentPage
             var response = await client.PostAsync("https://todo-list.dcism.org/statusItem_action.php", content);
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            Console.WriteLine("Server response: " + responseBody);
+            Console.WriteLine("Complete Task - Server response: " + responseBody);
 
             if (response.IsSuccessStatusCode)
             {
                 var result = JsonSerializer.Deserialize<GenericResponse>(responseBody);
                 if (result?.Status == 200)
                 {
-                    await DisplayAlert("Success", result.Message, "OK");
+                    await DisplayAlert("Marked as Complete", result.Message, "OK");
 
                     // Optionally remove task from UI or reload
                     var itemToRemove = Items.FirstOrDefault(x => x.ItemId == task.ItemId);

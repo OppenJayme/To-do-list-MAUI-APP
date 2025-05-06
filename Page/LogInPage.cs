@@ -68,7 +68,7 @@ namespace TodoListApp1.Page
 
                 if (result.Status == 200)
                 {
-                    await DisplayAlert("Success", result.Message ?? "Logged in.", "OK");
+                    await DisplayAlert("Login Successful", result.Message ?? "Logged in.", "OK");
 
                     // Save user ID
                     Preferences.Set("user_id", result.Data.Id);

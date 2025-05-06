@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.Net.Http;
 using System.Text.Json;
 using TodoListApp1.Models;
+using System.Text;
+
 
 namespace TodoListApp1.Page
 {
@@ -52,6 +53,58 @@ namespace TodoListApp1.Page
                 else
                 {
                     await DisplayAlert("Error", "Failed to load completed tasks", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Exception", ex.Message, "OK");
+            }
+            
+        }
+        private async void OnUndoClicked(object sender, EventArgs e)
+        {
+            var button = sender as ImageButton;
+            if (button?.BindingContext is not ToDoItem task)
+                return;
+
+            try
+            {
+                using var client = new HttpClient();
+
+                var requestBody = new
+                {
+                    status = "active",
+                    item_id = task.ItemId
+                };
+
+                var json = JsonSerializer.Serialize(requestBody);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                Console.WriteLine(json);
+                var response = await client.PostAsync("https://todo-list.dcism.org/statusItem_action.php", content);
+                var responseBody = await response.Content.ReadAsStringAsync();
+
+                Console.WriteLine("Undo Task - Server response: " + responseBody);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonSerializer.Deserialize<GenericResponse>(responseBody);
+                    if (result?.Status == 200)
+                    {
+                        await DisplayAlert("Marked as Incomplete", result.Message, "OK");
+
+                        // Optionally remove task from UI or reload
+                        var itemToRemove = CompletedItems.FirstOrDefault(x => x.ItemId == task.ItemId);
+                        if (itemToRemove != null)
+                            CompletedItems.Remove(itemToRemove);
+                    }
+                    else
+                    {
+                        await DisplayAlert("Failed", result?.Message ?? "Unknown error", "OK");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("HTTP Error", $"Status {(int)response.StatusCode}: {responseBody}", "OK");
                 }
             }
             catch (Exception ex)

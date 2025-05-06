@@ -45,9 +45,17 @@
                                             <TapGestureRecognizer/>
                                         </Label.GestureRecognizers>
                                     </Label>
+                                    <!-- Undo Button -->
+                                    <ImageButton Source="undo_icon.png"
+                                                 Grid.Column="1"
+                                                 BackgroundColor="Transparent"
+                                                 Scale="0.5"
+                                                 WidthRequest="25"
+                                                 HeightRequest="25"
+                                                 Clicked="OnUndoClicked"/>
                                     <!-- Delete Button -->
                                     <ImageButton Source="trash_icon.png"
-                                                 Grid.Column="1"
+                                                 Grid.Column="2"
                                                  BackgroundColor="Transparent"
                                                  Scale="0.5"/>
                                 </Grid>
