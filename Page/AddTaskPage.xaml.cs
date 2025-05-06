@@ -49,7 +49,7 @@ namespace TodoListApp1.Page
                 var response = await _http.PostAsync("/addItem_action.php", content);
                 var body = await response.Content.ReadAsStringAsync();
 
-                Console.WriteLine("Response Body: " + body);
+                Console.WriteLine("Task Response Body: " + body);
 
                 var apiResult = JsonSerializer.Deserialize<ApiResponse>(body)
                                 ?? throw new JsonException("Empty response");
