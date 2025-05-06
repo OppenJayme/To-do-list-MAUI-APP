@@ -47,8 +47,11 @@ public partial class TaskPage : ContentPage
                 // Loop through the tasks and add them to the ObservableCollection
                 if (result.Data != null)
                 {
+                    Console.WriteLine("Raw JSON from server: " + response);
+
                     foreach (var item in result.Data.Values)
                     {
+                        Console.WriteLine($"Deserialized item: ID={item.ItemId}, Name={item.Item_Name}");   
                         // Add each task (ToDoItem) to the Items collection
                         Items.Add(item);
                     }
@@ -88,7 +91,7 @@ public partial class TaskPage : ContentPage
 
             var json = JsonSerializer.Serialize(requestBody);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-
+            Console.WriteLine(json);
             var response = await client.PostAsync("https://todo-list.dcism.org/statusItem_action.php", content);
             var responseBody = await response.Content.ReadAsStringAsync();
 
@@ -121,6 +124,4 @@ public partial class TaskPage : ContentPage
             await DisplayAlert("Exception", ex.Message, "OK");
         }
     }
-
-
 }

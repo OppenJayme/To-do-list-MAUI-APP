@@ -32,12 +32,26 @@
                 <CollectionView x:Name="CompletedList" ItemsSource="{Binding CompletedItems}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BorderColor="Gray" Padding="10" Margin="0,5">
-                                <StackLayout>
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" />
-                                    <!-- Optionally, add more details here like task description -->
-                                </StackLayout>
-                            </Frame>
+                            <Border Stroke="#DDD"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 10"
+                                    BackgroundColor="#E6E6E6"
+                                    Margin="0,5"
+                                    Padding="10">
+                                <Grid ColumnDefinitions="*,Auto,Auto" VerticalOptions="Center">
+                                    <!-- Task Title -->
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" TextColor="Black">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <!-- Delete Button -->
+                                    <ImageButton Source="trash_icon.png"
+                                                 Grid.Column="1"
+                                                 BackgroundColor="Transparent"
+                                                 Scale="0.5"/>
+                                </Grid>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

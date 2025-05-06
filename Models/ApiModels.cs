@@ -50,8 +50,10 @@ namespace TodoListApp1.Models
     
     public class GenericResponse
     {
+        [JsonPropertyName("status")]
         public int Status { get; set; }
+
+        [JsonPropertyName("message")]
         public string Message { get; set; }
     }
-
 }
