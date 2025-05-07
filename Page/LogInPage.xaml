@@ -7,12 +7,13 @@
     <AbsoluteLayout BackgroundColor="White">
         <VerticalStackLayout Spacing="0" VerticalOptions="Fill" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             <Image Source="todologo.png" WidthRequest="286" HeightRequest="286" Margin="0,66,0,-10"></Image>
-            <Label Text="Sign In"
+            <Label Text="Sign In" FontFamily="PoppinsExtraBold"
                VerticalOptions="Center"
                HorizontalOptions="Center"
                FontSize="30"
                Padding="0,-5,0,30"
-               FontAttributes="Bold">
+               TextColor="Gray">
+                
             </Label>
             <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" 
                 WidthRequest="345" HeightRequest="50">
@@ -25,6 +26,7 @@
                    Keyboard="Email"
                    BackgroundColor="Transparent"
                    TextColor="Black"
+                   FontFamily="Poppins-Regular"
                    Margin="30,2 ,0,0"/>
             </Border>
             <Border Stroke="Gray" StrokeThickness="1" Margin="0,0,0,20" 
@@ -39,9 +41,10 @@
                    Keyboard="Default"
                    BackgroundColor="Transparent"
                    TextColor="Black"
+                   FontFamily="Poppins-Regular"
                    Margin="30,2 ,0,0"/>
             </Border>
-            <Button Text="Log In" 
+            <Button Text="Log In" FontFamily="Poppins-SemiBold"
                 WidthRequest="345"
                 BackgroundColor="#50C2C9"
                 FontAttributes="Bold"
@@ -50,13 +53,13 @@
                 Clicked="OnLogInClicked"></Button>
             
             <HorizontalStackLayout HorizontalOptions="Center">
-                <Label Text="Don't have an account?"
+                <Label Text="Don't have an account?" FontFamily="Poppins-Regular"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
                    FontSize="15"/>
-                        <Label Text=" Sign up."
+                        <Label Text=" Sign up." FontFamily="Poppins-Regular" FontAttributes="Bold"
                    FontSize="15"
-                   TextColor="Blue">
+                   TextColor="CadetBlue">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="SignUpTapped" />
                             </Label.GestureRecognizers>

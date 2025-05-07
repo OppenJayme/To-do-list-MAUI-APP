@@ -4,7 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.AddTaskPage"
              Title="Add Task"
-             Shell.NavBarIsVisible="True">
+             Shell.NavBarIsVisible="True"
+             Shell.BackgroundColor="#D6EFEF"
+             BackgroundColor="#f0f9f9">
 
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,*,Auto"
@@ -14,24 +16,25 @@
             <Entry x:Name="TitleEntry"
                    Grid.Row="0"
                    Placeholder="Task Title"
+                   FontSize="20"
+                   FontAttributes="Bold"
                    Margin="0,0,0,10" />
-            <!-- Adjusted margin -->
 
-            <!-- Description Input Field -->
+            <!-- Description Input Field (Auto expand as text is entered) -->
             <Editor x:Name="DescriptionEditor"
                     Grid.Row="1"
-                    Placeholder="Task description"
-                    AutoSize="TextChanges"
-                    HeightRequest="100"
-                    VerticalOptions="FillAndExpand"
+                    Placeholder="Task Description"
+                    FontSize="15"
+                    HeightRequest="1000"   
+                    VerticalOptions="Start" 
                     BackgroundColor="Transparent"
                     TextColor="Black"
                     Margin="0,0,0,10" />
-            <!-- Adjusted margin -->
 
             <!-- Add Button -->
             <Button Grid.Row="2"
                     Text="Add Task"
+                    FontAttributes="Bold"
                     BackgroundColor="#4ECDC4"
                     TextColor="White"
                     Clicked="OnAddTaskClicked"

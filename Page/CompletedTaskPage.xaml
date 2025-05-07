@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.CompletedTaskPage"
-             BackgroundColor="White"
+             BackgroundColor="#f0f9f9"
              Title="Completed Tasks">
 
     <AbsoluteLayout>
@@ -16,54 +16,72 @@
         <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
                  AbsoluteLayout.LayoutBounds="0.2,-0.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
 
-        <!-- Main Content (StackLayout and CollectionView) -->
-        <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-            <StackLayout Padding="20" Spacing="10">
-                <!-- Page Header -->
-                <Label Text="Completed Tasks"
-                       FontSize="32"
-                       FontFamily="PoppinsExtraBold"
-                       HorizontalOptions="Center"
-                       FontAttributes="Bold"
-                       TextColor="Gray"/>
-                <BoxView HeightRequest="2" Color="LightGray" Margin="20,0"/>
+        <!-- Main Content -->
+        <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
+              Padding="18,20,18,0"
+              RowDefinitions="Auto,Auto,*">
 
-                <!-- Collection View for Displaying Completed Tasks -->
-                <CollectionView x:Name="CompletedList" ItemsSource="{Binding CompletedItems}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Stroke="#DDD"
-                                    StrokeThickness="1"
-                                    StrokeShape="RoundRectangle 10"
-                                    BackgroundColor="#E6E6E6"
-                                    Margin="0,5"
-                                    Padding="10">
-                                <Grid ColumnDefinitions="*,Auto,Auto" VerticalOptions="Center">
-                                    <!-- Task Title -->
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" TextColor="Black">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                    <!-- Undo Button -->
+            <!-- Header -->
+            <Label Text="Completed Tasks"
+                   FontSize="32"
+                   FontFamily="PoppinsExtraBold"
+                   HorizontalOptions="Center"
+                   TextColor="Gray"
+                   Grid.Row="0" />
+
+            <BoxView HeightRequest="2" Color="LightGray" Margin="20,0" Grid.Row="1" />
+
+            <!-- CollectionView -->
+            <CollectionView x:Name="CompletedList"
+                            Grid.Row="2"
+                            ItemsSource="{Binding CompletedItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 15"
+                                BackgroundColor="#f2f2ef"
+                                Margin="4,5"
+                                Padding="1">
+                            <StackLayout Spacing="2">
+                                <!-- Title -->
+                                <Label Text="{Binding Title}"
+                                       FontFamily="PoppinsExtraBold"
+                                       TextColor="DimGray"
+                                       FontSize="20"
+                                       Padding="14,10,0,0" />
+
+                                <!-- Description -->
+                                <Label Text="{Binding DescriptionPreview}"
+                                       FontFamily="Poppins"
+                                       TextColor="#666"
+                                       FontSize="14"
+                                       LineBreakMode="TailTruncation"
+                                       Padding="14,0,0,0" />
+
+                                <!-- Actions -->
+                                <Grid ColumnDefinitions="*,Auto,Auto"
+                                      VerticalOptions="Center"
+                                      Padding="0,4,0,0">
                                     <ImageButton Source="undo_icon.png"
                                                  Grid.Column="1"
                                                  BackgroundColor="Transparent"
+                                                 HeightRequest="30"
+                                                 WidthRequest="30"
                                                  Scale="0.5"
-                                                 WidthRequest="25"
-                                                 HeightRequest="25"
-                                                 Clicked="OnUndoClicked"/>
-                                    <!-- Delete Button -->
+                                                 VerticalOptions="Center"
+                                                 Clicked="OnUndoClicked" />
+
                                     <ImageButton Source="trash_icon.png"
                                                  Grid.Column="2"
                                                  BackgroundColor="Transparent"
-                                                 Scale="0.5"/>
+                                                 Scale="0.5"
+                                                 VerticalOptions="Center"
+                                                 Clicked="OnDeleteClicked" />
                                 </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
+                            </StackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </AbsoluteLayout>
 </ContentPage>

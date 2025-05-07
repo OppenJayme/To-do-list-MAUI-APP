@@ -4,64 +4,67 @@
              x:Class="TodoListApp1.Page.ProfilePage"
              Title="Profile"
              BackgroundColor="#f0f9f9">
-    <Grid RowDefinitions="Auto,*,Auto">
-        <!-- Background Graphics in Grid -->
-        <AbsoluteLayout Grid.Row="0" Grid.RowSpan="3">
-            <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
-                     AbsoluteLayout.LayoutBounds="1,1.06,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
-            <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
-                     AbsoluteLayout.LayoutBounds="0.80,1.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
-            <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
-                     AbsoluteLayout.LayoutBounds="0.010,-0.05,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
-            <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
-                     AbsoluteLayout.LayoutBounds="0.2,-0.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
-        </AbsoluteLayout>
-        <!-- Header -->
-        <Grid Grid.Row="0" BackgroundColor="#4EC5C1" HeightRequest="60">
+
+    <AbsoluteLayout>
+
+        <!-- Profile Layout -->
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+              RowDefinitions="Auto,*,Auto" Padding="20">
+
+            <!-- Header -->
             <Label Text="Profile"
+                   FontFamily="PoppinsExtraBold"
+                   FontSize="32"
                    HorizontalOptions="Center"
+                   TextColor="Gray"
+                   Grid.Row="0" />
+
+            <!-- Profile Card -->
+            <Frame Grid.Row="1"
+                   CornerRadius="20"
+                   BackgroundColor="#ffffff"
+                   Padding="30"
+                   HasShadow="True"
                    VerticalOptions="Center"
-                   FontAttributes="Bold"
-                   FontSize="20"
-                   TextColor="White" />
+                   HorizontalOptions="Center">
+                <StackLayout Spacing="20" HorizontalOptions="Center">
+
+                    <!-- Circular Profile Image -->
+                    <Image Source="your_profile_image.jpeg"
+                           WidthRequest="160"
+                           HeightRequest="160"
+                           Aspect="AspectFill">
+                        <Image.Clip>
+                            <EllipseGeometry Center="80,80" RadiusX="80" RadiusY="80" />
+                        </Image.Clip>
+                    </Image>
+
+                    <!-- User Info -->
+                    <Label Text="Your Name"
+                           FontFamily="PoppinsExtraBold"
+                           FontSize="24"
+                           HorizontalTextAlignment="Center"
+                           TextColor="DimGray" />
+
+                    <Label Text="your.email@example.com"
+                           FontFamily="Poppins"
+                           FontSize="14"
+                           TextColor="#666"
+                           HorizontalTextAlignment="Center" />
+
+                    <!-- Sign Out Button -->
+                    <Button Text="Sign Out"
+                            BackgroundColor="#4EC5C1"
+                            TextColor="White"
+                            FontFamily="Poppins"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            WidthRequest="200"
+                            HeightRequest="40"
+                            Clicked="OnSignOutClicked" />
+                </StackLayout>
+            </Frame>
+
         </Grid>
-        
-        <!-- Profile Content -->
-        <StackLayout Grid.Row="1" Padding="30"
-                     VerticalOptions="Center" 
-                     HorizontalOptions="Center"
-                     Spacing="20">
-
-            <!-- Profile Image -->
-            <StackLayout Grid.Row="1"
-                         VerticalOptions="Center"
-                         HorizontalOptions="Center"
-                         Spacing="20">
-
-                <!-- Circular Profile Image without Frame -->
-                <Image Source="your_profile_image.jpeg"
-                       WidthRequest="200"
-                       HeightRequest="200"
-                       Aspect="AspectFill">
-                    <Image.Clip>
-                        <EllipseGeometry Center="100,100" RadiusX="100" RadiusY="100" />
-                    </Image.Clip>
-                </Image>
-
-                <!-- Sign Out Button -->
-                <Button Text="Sign Out"
-                        BackgroundColor="#4EC5C1"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        CornerRadius="10"
-                        WidthRequest="345"
-                        HeightRequest="40"
-                        Clicked="OnSignOutClicked" />
-            </StackLayout>
-
-        </StackLayout>
-
-        
-
-    </Grid>
+    </AbsoluteLayout>
 </ContentPage>

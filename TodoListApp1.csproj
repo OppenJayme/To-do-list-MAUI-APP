@@ -93,16 +93,11 @@
 	  </Compile>
 	  <Compile Update="Page\TaskPage.xaml.cs">
 	    <DependentUpon>TaskPage.xaml</DependentUpon>
-	    <SubType>Code</SubType>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Remove="Page\SignUp.xaml" />
-	  <MauiXaml Update="Page\TaskPage.xaml">
-	    <SubType>Designer</SubType>
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

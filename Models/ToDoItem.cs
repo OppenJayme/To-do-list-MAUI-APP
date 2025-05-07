@@ -22,4 +22,6 @@ public class ToDoItem
 
     public string Title => Item_Name;
     public bool IsCompleted => Status == "inactive";
+    
+    public string DescriptionPreview => Item_Description.Length > 30 ? Item_Description.Substring(0, 30) + "..." : Item_Description;
 }
