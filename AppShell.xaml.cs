@@ -16,7 +16,7 @@ namespace TodoListApp1
             {
                 Task.Run(async () =>
                 {
-                    await Task.Delay(100); // Small delay to ensure Shell is initialized
+                    await Task.Delay(100);
                     await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
                         await GoToAsync(initialRoute);

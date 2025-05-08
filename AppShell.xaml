@@ -11,7 +11,7 @@
     Shell.TabBarTitleColor="#32BAAA">
 
     <TabBar>
-        <!-- This must reference TaskPage, not LoginPage -->
+        
         <ShellContent
         Title="To Do"
         Icon="todosection_icon.png"

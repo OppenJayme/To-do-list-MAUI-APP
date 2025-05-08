@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Text.Json;
 using TodoListApp1.Models;
 using System.Text;
