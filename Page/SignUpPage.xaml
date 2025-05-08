@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.SignUpPage"
-             Title="SignUp"
-             NavigationPage.HasBackButton="False">
+             Title=""
+             NavigationPage.HasBackButton="False"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#f0f9f9">
     <AbsoluteLayout>
         <VerticalStackLayout Spacing="0" VerticalOptions="Fill" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-            <Image Source="signupgraphic.png" WidthRequest="200" HeightRequest="200" Margin="0,80,0,-10"/>
+            <Image Source="signupgraphic.png" WidthRequest="200" HeightRequest="200" Margin="0,30,0,-10"/>
             <Label Text="Let's help to meet up your tasks."
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
@@ -16,7 +18,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="First Name" 
+                <Entry Placeholder="First Name"  PlaceholderColor="DimGray"
                     Text="{Binding FirstName}" 
                     WidthRequest="345" 
                     BackgroundColor="Transparent" 
@@ -27,7 +29,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Last Name" 
+                <Entry Placeholder="Last Name" PlaceholderColor="DimGray"
                     Text="{Binding LastName}" 
                     WidthRequest="345" 
                     BackgroundColor="Transparent" 
@@ -38,7 +40,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-               <Entry Placeholder="Email Address" 
+               <Entry Placeholder="Email Address" PlaceholderColor="DimGray"
                     Text="{Binding Email}" 
                     WidthRequest="345" 
                     Keyboard="Email" 
@@ -50,7 +52,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Password" 
+                <Entry Placeholder="Password"  PlaceholderColor="DimGray"
                     Text="{Binding Password}" 
                     WidthRequest="345" 
                     IsPassword="True" 
@@ -62,7 +64,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Confirm Password" 
+                <Entry Placeholder="Confirm Password"  PlaceholderColor="DimGray"
                     Text="{Binding ConfirmPassword}" 
                     WidthRequest="345" 
                     IsPassword="True" 
@@ -75,17 +77,20 @@
                     WidthRequest="345"
                     BackgroundColor="#50C2C9"
                     FontAttributes="Bold"
+                    TextColor="WhiteSmoke"
                     Margin="0,0,0,15"
                     CornerRadius="7"/>
             <HorizontalStackLayout HorizontalOptions="Center">
                 
-                <Label Text="Already have an account?"
+                <Label Text="Already have an account?" FontFamily="Poppins-Regular"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
-                   FontSize="15"/>
-                <Label Text=" Log in."
                    FontSize="15"
-                   TextColor="Blue">
+                   TextColor="DimGray"/>
+                   
+                <Label Text=" Log in" FontFamily="Poppins-Regular" FontAttributes="Bold"
+                   FontSize="15"
+                   TextColor="CadetBlue">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnLabelTapped" />
                      </Label.GestureRecognizers>

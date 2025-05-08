@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoListApp1.Page.LogInPage"
              Title=""
-             BackgroundColor="Transparent">
+             BackgroundColor="#f0f9f9">
     <AbsoluteLayout BackgroundColor="White">
         <VerticalStackLayout Spacing="0" VerticalOptions="Fill" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             <Image Source="todologo.png" WidthRequest="286" HeightRequest="286" Margin="0,66,0,-10"></Image>
@@ -20,7 +20,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Email Address"
+                <Entry Placeholder="Email Address" PlaceholderColor="DimGray"
                    Text="{Binding Email, Mode=TwoWay}"
                    WidthRequest="345"
                    Keyboard="Email"
@@ -34,7 +34,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
                 </Border.StrokeShape>
-                <Entry Placeholder="Password"
+                <Entry Placeholder="Password" PlaceholderColor="DimGray"
                    Text="{Binding Password, Mode=TwoWay}"
                    WidthRequest="345"
                    IsPassword="True"
@@ -46,6 +46,7 @@
             </Border>
             <Button Text="Log In" FontFamily="Poppins-SemiBold"
                 WidthRequest="345"
+                TextColor="WhiteSmoke"
                 BackgroundColor="#50C2C9"
                 FontAttributes="Bold"
                 Margin="0,0,0,15"
@@ -53,11 +54,11 @@
                 Clicked="OnLogInClicked"></Button>
             
             <HorizontalStackLayout HorizontalOptions="Center">
-                <Label Text="Don't have an account?" FontFamily="Poppins-Regular"
+                <Label Text="Don't have an account?" FontFamily="Poppins-Regular" TextColor="DimGray"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
                    FontSize="15"/>
-                        <Label Text=" Sign up." FontFamily="Poppins-Regular" FontAttributes="Bold"
+                        <Label Text=" Sign up" FontFamily="Poppins-Regular" FontAttributes="Bold"
                    FontSize="15"
                    TextColor="CadetBlue">
                             <Label.GestureRecognizers>

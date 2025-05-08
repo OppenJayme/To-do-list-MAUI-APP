@@ -56,6 +56,7 @@ namespace TodoListApp1.Page
             InitializeComponent();
             BindingContext = this;
             Shell.SetFlyoutBehavior(this, FlyoutBehavior.Disabled);
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private async void OnSignUpClicked(object sender, EventArgs e)

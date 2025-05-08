@@ -21,10 +21,10 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>TodoListApp1</ApplicationTitle>
+		<ApplicationTitle>ToDo</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.todolistapp1</ApplicationId>
+		<ApplicationId>com.qsi.todo</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -44,10 +44,19 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
 	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
 	</PropertyGroup>
+	
+	<PropertyGroup>
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>C:\Keystore\qsi.keystore</AndroidSigningKeyStore>
+		<AndroidSigningStorePass>cis2203n</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>qsi-alias</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>cis2203n</AndroidSigningKeyPass>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.png" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />

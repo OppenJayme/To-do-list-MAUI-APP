@@ -16,7 +16,7 @@
         Title="To Do"
         Icon="todosection_icon.png"
         Route="TaskPage"
-        ContentTemplate="{DataTemplate pages:TaskPage}" />
+        ContentTemplate="{DataTemplate pages:ToDoPage}" />
 
         <ShellContent
         Title="Completed"
