@@ -97,12 +97,10 @@
 	  <Compile Remove="Page\NewPage1.cs" />
 	  <Compile Remove="Page\SignUp.cs" />
 	  <Compile Remove="Platforms\TaskPage.xaml.cs" />
-	  <Compile Update="Page\LogInPage.cs">
-	    <DependentUpon>LogInPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Page\TaskPage.xaml.cs">
 	    <DependentUpon>TaskPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Remove="Page\LogInPage.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
