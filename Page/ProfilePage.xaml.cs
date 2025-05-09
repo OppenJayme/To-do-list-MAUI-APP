@@ -15,6 +15,11 @@ namespace TodoListApp1.Page
             // Set the binding context to this page
             BindingContext = this;
         }
+        
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+        }
 
         private async void OnSignOutClicked(object? sender, EventArgs e)
         {

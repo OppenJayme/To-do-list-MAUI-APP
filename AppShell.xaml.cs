@@ -7,7 +7,8 @@ namespace TodoListApp1
         public AppShell(string? initialRoute = null)
         {
             InitializeComponent();
-
+            
+            Routing.RegisterRoute("LoadingPage", typeof(LoadingPage));
             Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
             Routing.RegisterRoute(nameof(ToDoPage), typeof(ToDoPage));
             Routing.RegisterRoute(nameof(AddTaskPage), typeof(AddTaskPage));

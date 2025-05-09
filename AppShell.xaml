@@ -5,11 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:TodoListApp1.Page"
     Shell.NavBarIsVisible="False"
+    Shell.TitleColor="Black"
     Shell.FlyoutBehavior="Disabled"
     Shell.TabBarBackgroundColor="#f2f2ef"
     Shell.TabBarForegroundColor="#32BAAA"
     Shell.TabBarTitleColor="#32BAAA">
 
+    <ShellContent
+        Route="LoadingPage"
+        ContentTemplate="{DataTemplate pages:LoadingPage}" />
+    
     <TabBar>
         
         <ShellContent

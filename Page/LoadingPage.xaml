@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoListApp1.Page.LoadingPage"
+             BackgroundColor="#f0f9f9">
+    <Grid>
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
+            <ActivityIndicator IsRunning="True" Color="#50C2C9" WidthRequest="80" HeightRequest="80" />
+            <Label Text="Login Successful. Loading your tasks..."
+                   FontSize="18"
+                   FontFamily="PoppinsRegular"
+                   FontAttributes="Bold"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"/>
+            <Label Text="Brought to you by QSI"
+                   FontSize="15"
+                   FontFamily="Poppins"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

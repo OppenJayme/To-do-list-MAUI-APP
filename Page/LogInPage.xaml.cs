@@ -68,16 +68,15 @@ namespace TodoListApp1.Page
 
                 if (result.Status == 200)
                 {
-                    await DisplayAlert("Login Successful", result.Message ?? "Logged in.", "OK");
-
-                    // Save user ID
+                    
                     Preferences.Set("user_id", result.Data.Id);
                     Preferences.Set("user_email", result.Data.Email);
                     Preferences.Set("user_fname", result.Data.Fname);
                     Preferences.Set("user_lname", result.Data.Lname);
-
-
-                    Application.Current.MainPage = new AppShell("//TaskPage");
+                    
+                    Application.Current.MainPage = new AppShell();
+                    await Task.Delay(50);
+                    await Shell.Current.GoToAsync("LoadingPage");
                 }
                 else
                 {
