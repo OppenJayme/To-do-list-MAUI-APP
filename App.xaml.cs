@@ -21,7 +21,7 @@ namespace TodoListApp1
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            // Start us off at the login screen
+            
             return new Window(new NavigationPage(new LogInPage()));
         }
     }
