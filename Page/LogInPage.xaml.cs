@@ -76,6 +76,7 @@ namespace TodoListApp1.Page
                     Preferences.Set("user_fname", result.Data.Fname);
                     Preferences.Set("user_lname", result.Data.Lname);
 
+
                     Application.Current.MainPage = new AppShell("//TaskPage");
                 }
                 else
