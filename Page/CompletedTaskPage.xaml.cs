@@ -20,9 +20,18 @@ namespace TodoListApp1.Page
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            LoadingIndicator.IsVisible = true;
+            LoadingIndicator.IsRunning = true;
+            CompletedList.IsVisible = false;
+            
+            await Task.Delay(1000);
             int userId = Preferences.Get("user_id", 0);
             Console.WriteLine($"Current User ID: {userId}");
             await LoadCompletedTasksAsync(userId);
+            
+            LoadingIndicator.IsRunning = false;
+            LoadingIndicator.IsVisible = false;
+            CompletedList.IsVisible = true;
         }
 
         private async Task LoadCompletedTasksAsync(int userId)
@@ -162,6 +171,16 @@ namespace TodoListApp1.Page
             catch (Exception ex)
             {
                 await DisplayAlert("Exception", ex.Message, "OK");
+            }
+        }
+        
+        private async void OnTaskSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.FirstOrDefault() is ToDoItem selectedTask)
+            {
+                ((CollectionView)sender).SelectedItem = null;
+
+                await Navigation.PushAsync(new ViewTaskPage(selectedTask, "inactive"));
             }
         }
     }

@@ -34,9 +34,14 @@
             <!-- Add Button -->
             <Button Grid.Row="2"
                     Text="Add Task"
+                    FontSize="14"
+                    FontFamily="PoppinsRegular"
                     FontAttributes="Bold"
                     BackgroundColor="#4ECDC4"
                     TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="35"
+                    WidthRequest="360"
                     Clicked="OnAddTaskClicked"
                     HorizontalOptions="Fill" />
         </Grid>

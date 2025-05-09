@@ -21,7 +21,7 @@
                 <Entry Placeholder="First Name"  PlaceholderColor="DimGray"
                     Text="{Binding FirstName}" 
                     WidthRequest="345" 
-                    BackgroundColor="Transparent" 
+                    BackgroundColor="FloralWhite" 
                     TextColor="Black" 
                     Margin="30,2,0,0"/>
             </Border>
@@ -32,7 +32,7 @@
                 <Entry Placeholder="Last Name" PlaceholderColor="DimGray"
                     Text="{Binding LastName}" 
                     WidthRequest="345" 
-                    BackgroundColor="Transparent" 
+                    BackgroundColor="FloralWhite" 
                     TextColor="Black" 
                     Margin="30,2,0,0"/>
             </Border>
@@ -44,7 +44,7 @@
                     Text="{Binding Email}" 
                     WidthRequest="345" 
                     Keyboard="Email" 
-                    BackgroundColor="Transparent" 
+                    BackgroundColor="FloralWhite" 
                     TextColor="Black" 
                     Margin="30,2,0,0"/>
             </Border>
@@ -56,7 +56,7 @@
                     Text="{Binding Password}" 
                     WidthRequest="345" 
                     IsPassword="True" 
-                    BackgroundColor="Transparent" 
+                    BackgroundColor="FloralWhite"  
                     TextColor="Black" 
                     Margin="30,2,0,0"/>
             </Border>
@@ -68,7 +68,7 @@
                     Text="{Binding ConfirmPassword}" 
                     WidthRequest="345" 
                     IsPassword="True" 
-                    BackgroundColor="Transparent" 
+                    BackgroundColor="FloralWhite" 
                     TextColor="Black" 
                     Margin="30,2,0,0"/>
             </Border>
@@ -77,6 +77,8 @@
                     WidthRequest="345"
                     BackgroundColor="#50C2C9"
                     FontAttributes="Bold"
+                    FontFamily="PoppinsRegular"
+                    FontSize="14"
                     TextColor="WhiteSmoke"
                     Margin="0,0,0,15"
                     CornerRadius="7"/>
