@@ -48,7 +48,7 @@
 	<PropertyGroup>
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
 		<AndroidKeyStore>True</AndroidKeyStore>
-		<AndroidSigningKeyStore>C:\Keystore\qsi.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyStore>Platforms/Android/Keystore/qsi.keystore</AndroidSigningKeyStore>
 		<AndroidSigningStorePass>cis2203n</AndroidSigningStorePass>
 		<AndroidSigningKeyAlias>qsi-alias</AndroidSigningKeyAlias>
 		<AndroidSigningKeyPass>cis2203n</AndroidSigningKeyPass>
@@ -113,9 +113,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Page\EditTaskPage.xaml.cs">
-	    <DependentUpon>EditTaskPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Page\EditCompletedTaskPage.xaml.cs">
 	    <DependentUpon>EditCompletedTaskPage.xaml</DependentUpon>
 	  </Compile>
@@ -134,9 +131,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Page\EditTaskPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Page\EditCompletedTaskPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -158,6 +152,10 @@
 	  <MauiXaml Update="Page\SignUpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Platforms\Android\Keystore\" />
 	</ItemGroup>
 
 </Project>

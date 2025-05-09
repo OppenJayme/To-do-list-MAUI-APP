@@ -72,6 +72,10 @@ namespace TodoListApp1.Page
 
                     // Save user ID
                     Preferences.Set("user_id", result.Data.Id);
+                    Preferences.Set("user_email", result.Data.Email);
+                    Preferences.Set("user_fname", result.Data.Fname);
+                    Preferences.Set("user_lname", result.Data.Lname);
+
 
                     Application.Current.MainPage = new AppShell("//TaskPage");
                 }

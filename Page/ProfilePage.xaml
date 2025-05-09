@@ -6,18 +6,32 @@
              BackgroundColor="#f0f9f9">
 
     <AbsoluteLayout>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+                 AbsoluteLayout.LayoutBounds="1,1.06,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+                 AbsoluteLayout.LayoutBounds="0.80,1.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+                 AbsoluteLayout.LayoutBounds="0.010,-0.05,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
+        <BoxView Color="#8FE1D7" Opacity="0.4" CornerRadius="100" WidthRequest="150" HeightRequest="150" 
+                 AbsoluteLayout.LayoutBounds="0.2,-0.15,10,200" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent"/>
 
         <!-- Profile Layout -->
         <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
               RowDefinitions="Auto,*,Auto" Padding="20">
 
             <!-- Header -->
-            <Label Text="Profile"
-                   FontFamily="PoppinsExtraBold"
-                   FontSize="32"
-                   HorizontalOptions="Center"
-                   TextColor="Gray"
-                   Grid.Row="0" />
+            <StackLayout Grid.Row="0" Spacing="4">
+                <Label Text="Profile"
+                    FontFamily="PoppinsExtraBold"
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                    TextColor="Gray" />
+
+                <BoxView HeightRequest="2"
+                        Color="LightGray"
+                        HorizontalOptions="Center"
+                        WidthRequest="350" />
+            </StackLayout>
 
             <!-- Profile Card -->
             <Frame Grid.Row="1"
@@ -40,13 +54,13 @@
                     </Image>
 
                     <!-- User Info -->
-                    <Label Text="Your Name"
+                    <Label Text="{Binding FullName}"
                            FontFamily="PoppinsExtraBold"
                            FontSize="24"
                            HorizontalTextAlignment="Center"
                            TextColor="DimGray" />
 
-                    <Label Text="your.email@example.com"
+                    <Label Text="{Binding Email}"
                            FontFamily="Poppins"
                            FontSize="14"
                            TextColor="#666"
