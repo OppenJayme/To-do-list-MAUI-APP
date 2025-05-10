@@ -33,57 +33,63 @@
                      Color="LightGray"
                      Margin="20,0"
                      Grid.Row="1" />
+            
+            <StackLayout Grid.Row="2">
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                   IsVisible="False"
+                                   IsRunning="False"
+                                   AbsoluteLayout.LayoutBounds="0.5,0.5,AutoSize,AutoSize"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   Color="MediumAquamarine"
+                                   HeightRequest="100"
+                                   WidthRequest="100" 
+                                   Margin="0,250,0, 0"/>
 
-            <!-- Scrollable Task List -->
-            <CollectionView x:Name="ToDoList"
-                            Grid.Row="2"
-                            ItemsSource="{Binding Items}"
-                            SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border StrokeShape="RoundRectangle 15"
-                                BackgroundColor="#f2f2ef"
-                                Margin="4,5"
-                                Padding="1">
-                            <StackLayout Spacing="2">
-                                <!-- Title -->
-                                <Label Text="{Binding Title}"
-                                       FontFamily="PoppinsExtraBold"
-                                       TextColor="DimGray"
-                                       FontSize="20"
-                                       Padding="14,10,0,0" />
-
-                                <!-- Description -->
-                                <Label Text="{Binding DescriptionPreview}"
-                                       FontFamily="Poppins"
-                                       TextColor="#666"
-                                       FontSize="14"
-                                       LineBreakMode="TailTruncation"
-                                       Padding="14,0,0,0" />
-
-                                <!-- Actions -->
-                                <Grid ColumnDefinitions="*,Auto,Auto"
-                                      VerticalOptions="Center"
-                                      Padding="0,4,0,0">
-                                    <ImageButton Source="check_icon.png"
-                                                 Grid.Column="1"
-                                                 BackgroundColor="Transparent"
-                                                 Scale="0.5"
-                                                 VerticalOptions="Center"
-                                                 Clicked="OnCheckClicked" />
-
-                                    <ImageButton Source="trash_icon.png"
-                                                 Grid.Column="2"
-                                                 BackgroundColor="Transparent"
-                                                 Scale="0.5"
-                                                 VerticalOptions="Center"
-                                                 Clicked="OnDeleteClicked" />
-                                </Grid>
-                            </StackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <CollectionView x:Name="ToDoList"
+                                ItemsSource="{Binding Items}"
+                                SelectionMode="Single"
+                                SelectionChanged="OnTaskSelected"
+                                IsVisible="False"> <!-- Initially hidden -->
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Border StrokeShape="RoundRectangle 15"
+                        BackgroundColor="#f2f2ef"
+                        Margin="4,5"
+                        Padding="1">
+                    <StackLayout Spacing="2">
+                        <Label Text="{Binding Title}"
+                               FontFamily="PoppinsExtraBold"
+                               TextColor="DimGray"
+                               FontSize="20"
+                               Padding="14,10,0,0" />
+                        <Label Text="{Binding DescriptionPreview}"
+                               FontFamily="Poppins"
+                               TextColor="#666"
+                               FontSize="14"
+                               LineBreakMode="TailTruncation"
+                               Padding="14,0,0,0" />
+                        <Grid ColumnDefinitions="*,Auto,Auto"
+                              VerticalOptions="Center"
+                              Padding="0,4,0,0">
+                            <ImageButton Source="check_icon.png"
+                                         Grid.Column="1"
+                                         BackgroundColor="Transparent"
+                                         Scale="0.5"
+                                         VerticalOptions="Center"
+                                         Clicked="OnCheckClicked" />
+                            <ImageButton Source="trash_icon.png"
+                                         Grid.Column="2"
+                                         BackgroundColor="Transparent"
+                                         Scale="0.5"
+                                         VerticalOptions="Center"
+                                         Clicked="OnDeleteClicked" />
+                        </Grid>
+                    </StackLayout>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+            </StackLayout>
             
         </Grid>
         <!-- Floating Add Button -->
@@ -99,5 +105,6 @@
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 Margin="0,0,0,20"
                 Clicked="OnAddClicked" />
+  
     </AbsoluteLayout>
 </ContentPage>

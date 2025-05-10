@@ -21,9 +21,18 @@ public partial class ToDoPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+        LoadingIndicator.IsVisible = true;
+        LoadingIndicator.IsRunning = true;
+        ToDoList.IsVisible = false;
+        
+        await Task.Delay(1000);
         int userId = Preferences.Get("user_id", 0);
         Console.WriteLine($"Current User ID: {userId}");
         await LoadTasksAsync("active", userId);
+        
+        LoadingIndicator.IsRunning = false;
+        LoadingIndicator.IsVisible = false;
+        ToDoList.IsVisible = true;
     }
 
     private async Task LoadTasksAsync(string status, int userId)
@@ -124,15 +133,14 @@ public partial class ToDoPage
         if (button?.BindingContext is not ToDoItem task)
             return;
 
-        var confirm = await DisplayAlert("Confirm Delete", "Are you sure you want to delete this task?", "Yes", "No");
+        var confirm = await DisplayAlert("Confirm Delete", $"Delete {task.Title}", "Yes", "No");
         if (!confirm)
             return;
 
         try
         {
             using var client = new HttpClient();
-
-            // Send as application/x-www-form-urlencoded
+            
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("item_id", task.ItemId.ToString())
@@ -168,6 +176,15 @@ public partial class ToDoPage
         catch (Exception ex)
         {
             await DisplayAlert("Exception", ex.Message, "OK");
+        }
+    }
+    private async void OnTaskSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is ToDoItem selectedTask)
+        {
+            ((CollectionView)sender).SelectedItem = null;
+
+            await Navigation.PushAsync(new ViewTaskPage(selectedTask, "active"));
         }
     }
 }

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoListApp1.Page.ViewTaskPage"
+             Title="Task Details"
+             Shell.NavBarIsVisible="True"
+             Shell.BackgroundColor="#D6EFEF"
+             BackgroundColor="#f0f9f9">
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*,Auto"
+              Padding="20">
+
+            <!-- Title Display -->
+            <Label x:Name="TitleLabel"
+                   Grid.Row="0"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   Margin="0,0,0,10" />
+
+            <!-- Title Input -->
+            <Entry x:Name="TitleEntry"
+                   Grid.Row="0"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   Margin="0,0,0,10"
+                   IsVisible="False" 
+                   PlaceholderColor="DimGray"/>
+
+            <!-- Description Display -->
+            <ScrollView Grid.Row="1">
+                <Label x:Name="DescriptionLabel"
+                       FontSize="15"
+                       TextColor="Black"
+                       Margin="0,0,0,10" />
+            </ScrollView>
+
+            <!-- Description Input -->
+            <ScrollView Grid.Row="1">
+                <Entry x:Name="DescriptionEntry"
+                       FontSize="15"
+                       TextColor="Black"
+                       Margin="0,0,0,10"
+                       IsVisible="False" 
+                       PlaceholderColor="DimGray"/>
+            </ScrollView>
+
+            <StackLayout Grid.Row="2"
+                         Orientation="Vertical"  
+                         HorizontalOptions="Center"
+                         Spacing="12">
+
+                <!-- Edit Button -->
+                <Button x:Name="EditButton" Text="Edit Task Details" FontSize="14"
+                        FontFamily="PoppinsRegular" 
+                        FontAttributes="Bold"
+                        BackgroundColor="#4ECDC4"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="35"
+                        WidthRequest="360"
+                        Clicked="OnEditClicked"/>
+                
+                <!-- Cancel Edit Button -->
+                <Button x:Name="CancelEditButton" Text="Cancel Edit"
+                        IsVisible="False"
+                        FontFamily="PoppinsRegular" 
+                        FontAttributes="Bold"
+                        BackgroundColor="#778899"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="35" 
+                        WidthRequest="360"
+                        Clicked="OnCancelEditClicked"/>
+
+                <!-- Mark as Complete Button -->
+                <Button x:Name="CompleteButton" Text="Mark as Complete" FontSize="14"
+                        IsVisible="False"
+                        FontFamily="PoppinsRegular" 
+                        FontAttributes="Bold"
+                        BackgroundColor="#2EC4B6"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="35" 
+                        WidthRequest="360"
+                        Clicked="OnCompleteClicked"/> 
+
+                <!-- Mark as Unfinished Button -->
+                <Button x:Name="IncompleteButton" Text="Mark as Incomplete" FontSize="14"
+                        IsVisible="False"
+                        FontFamily="PoppinsRegular" 
+                        FontAttributes="Bold"
+                        BackgroundColor="#FF9F00"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="35" 
+                        WidthRequest="360"
+                        Clicked="OnIncompleteClicked" />
+
+                <!-- Delete Task Button -->
+                <Button x:Name="DeleteButton" Text="Delete Task" FontSize="14"
+                        FontFamily="PoppinsRegular" 
+                        FontAttributes="Bold"
+                        BackgroundColor="#FF6B6B"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="35" 
+                        WidthRequest="360"
+                        Clicked="OnDeleteClicked"/> 
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
